@@ -1,0 +1,40 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  height: 100px;
+  margin: 0px 0px;
+
+  .nav-icon {
+    cursor: pointer;
+    font-size: 2em;
+    color: $dark-blue;
+  }
+
+  .right-side {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 150px;
+  }
+
+  .central-column {
+    width: 300px; 
+    height: 70px;
+    position: relative; 
+    overflow: hidden;
+    margin-left: 100px;
+
+    .central-column img {
+      object-fit: contain; 
+      max-width: 100%; 
+      max-height: 100%; 
+      display: block; 
+    }
+
+  }
+
+  
+  
+}

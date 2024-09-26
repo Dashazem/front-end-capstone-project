@@ -1,0 +1,19 @@
+@import "./variables.scss";
+@import "./test.scss";
+@import "./navbar.scss";
+@import "./home.scss";
+@import "./modal.scss";
+@import "./footer.scss";
+
+body {
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: $deep-grey;
+}
+
+p {
+  color: $dark-grey;
+}
