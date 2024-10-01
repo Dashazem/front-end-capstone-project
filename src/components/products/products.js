@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
+import Product from './product-item';
+
 const Products = () => {
   const { slug } = useParams(); 
   const [products, setProducts] = useState([]);
+  
 
   useEffect(() => {
     if (slug) {
@@ -14,10 +17,11 @@ const Products = () => {
     }
   }, [slug]);
 
+
   const getProductsByCategory = (category) => {
     axios.get(`http://127.0.0.1:5000/products?category=${category}`)
       .then(response => {
-        setProducts(response.data.products); 
+        setProducts(response.data.products.sort((a, b) => b.products_id - a.products_id)); 
       }).catch(error => {
         console.log('getProductsByCategory error', error);
       });
@@ -26,29 +30,31 @@ const Products = () => {
   const getAllProducts = () => {
     axios.get('http://127.0.0.1:5000/products') 
       .then(response => {
-        setProducts(response.data.products); 
+        console.log('response', response.data);
+        setProducts(response.data.products.sort((a, b) => b.products_id - a.products_id)); 
       }).catch(error => {
         console.log('getAllProducts error', error);
       });
   };
 
-  const portfolioItems = () => {
-    return products.map(product => (
-      <div key={product.products_id}>
-        <h1>{product.products_name}</h1>
-        <img className='image-product' src={product.image_product[0]} alt={product.products_name} />
-      </div>
-    ));
-  };
+  const receivedProducts = () => {
+    return products.map(product => {
+      return <Product key={product.products_id} product={product} />;
+    }
+  )};
 
   return (
-    <div>
-      {portfolioItems()}
+    <div className='products-wrapper'>
+      {receivedProducts()}
     </div>
   );
 };
 
 export default Products;
+
+
+
+
 
 
 

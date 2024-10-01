@@ -4,12 +4,13 @@ import NavBar from '../components/navigation/navbar';
 import Home from '../components/pages/home';
 import Login from '../components/pages/login';
 import ShoppingCart from '../components/pages/cart';
-import Products from '../components/pages/products';
+import Products from '../components/products/products';
 import Icons from '../components/helpers/icons';
 
 
 
 import Footer from '../components/navigation/footer';
+import ProductDetails from '../components/products/product-details';
 
 export default function App() {
   Icons();
@@ -25,6 +26,7 @@ export default function App() {
             <Route path="/cart" element={<ShoppingCart />} />
             <Route exact path="/categories/:slug" element={<Products />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/product/:product_id" element={<ProductDetails />} />
           </Routes>
 
           <Footer />

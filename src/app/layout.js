@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
-import { inter, worksans, playfair_display } from '@/app/fonts/fonts';
+import { inter, worksans, playfair_display } from '../app/fonts/fonts';
 import "./style/main.scss";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

@@ -5,6 +5,7 @@ import {
   faUserTie,
   faBagShopping,
   faBars,
+  faSquarePlus,
   faTrash, 
   faSignOutAlt, 
   faEdit, 
@@ -17,7 +18,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Icons = () => {
-  return library.add(faUser, faUserTie, faBagShopping, faBars, faTrash, faSignOutAlt, faEdit, faSpinner, faPlusCircle, faPhone, faEnvelope, faMapMarkedAlt, faLock);
+  return library.add(faUser, faUserTie, faBagShopping, faBars, faSquarePlus, faTrash, faSignOutAlt, faEdit, faSpinner, faPlusCircle, faPhone, faEnvelope, faMapMarkedAlt, faLock);
 }
 
 export default Icons;
