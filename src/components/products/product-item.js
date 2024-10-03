@@ -33,9 +33,10 @@ const Product = ({ product }) => {
       name: products_name,
       price: products_price,
       image: image_product,
-      quantity: products_quantity,
+      max_quantity: products_quantity,
       price_10: products_price_discounted_10,
-      price_20: products_price_discounted_20
+      price_20: products_price_discounted_20,
+      action: "increment"
     };
     dispatch(addToCart(productData));
     setCartModalIsOpen(true);

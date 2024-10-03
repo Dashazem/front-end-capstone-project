@@ -10,3 +10,10 @@ export const closeCart = () => {
     type: 'CLOSE_CART',
   };
 };
+
+export const INCREASE_ITEM_QUANTITY = 'INCREASE_ITEM_QUANTITY';
+
+export const increaseItemQuantity = (id) => ({
+  type: INCREASE_ITEM_QUANTITY,
+  payload: { id },
+});
