@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux'; 
 import axios from 'axios';
 import { worksans, playfair_display } from '../../app/fonts/fonts';
+import { addToCart } from '../../store/actions/cartActions';
+
 
 import Slider from 'react-slick';
+import ShoppingCartModal from '../modals/cart-modal';
 
 import "../../../node_modules/slick-carousel/slick/slick.css"; 
 import "../../../node_modules/slick-carousel/slick/slick-theme.css"; 
@@ -11,6 +15,8 @@ import "../../../node_modules/slick-carousel/slick/slick-theme.css";
 const ProductDetails = () => {
   const { product_id } = useParams(); 
   const [product, setProduct] = useState(null);
+  const [cartModalIsOpen, setCartModalIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getProduct(product_id);
@@ -38,7 +44,8 @@ const ProductDetails = () => {
 
 
   let image_product = [];
-  let products_name, products_id, products_description, products_material, products_price;
+  let products_name, products_id, products_description, products_material, products_price, products_quantity, products_price_discounted_10,
+  products_price_discounted_20;
 
   if (product) {
     ({
@@ -47,16 +54,49 @@ const ProductDetails = () => {
       products_id,
       products_description,
       products_material,
-      products_price
+      products_quantity,
+      products_price,
+      products_price_discounted_10,
+      products_price_discounted_20
     } = product);
   }
+
+  const handleCloseCartModal = () => {
+    setCartModalIsOpen(false);
+  };
+
+
+  const handleAddProductToCart = () => {
+    const productData = {
+      id: products_id,
+      name: products_name,
+      price: products_price,
+      image: image_product,
+      quantity: products_quantity,
+      price_10: products_price_discounted_10,
+      price_20: products_price_discounted_20
+    };
+
+    dispatch(addToCart(productData));
+    setCartModalIsOpen(true); 
+    console.log(`Product ID: ${products_id} added to cart`);
+  };
 
   return (
     
 
     <div>
+      <ShoppingCartModal 
+        handleCloseCartModal={handleCloseCartModal} 
+        modalIsOpen={cartModalIsOpen}
+        products_name={products_name} 
+        products_price={products_price}
+        image_product={image_product}/>
+
       {product ? (
         <div className='product-details'>
+
+        
           <div className='left-column'>
 
           {image_product.length > 1 ? (
@@ -72,8 +112,6 @@ const ProductDetails = () => {
             )}
           </div>
 
-          
-
           <div className='right-column'>
             <h3>{products_name}</h3>
 
@@ -86,7 +124,7 @@ const ProductDetails = () => {
             <p>Composición: {products_material}</p>
 
             <div className='btn-wrapper'>
-              <button className='btn'>Añadir</button>
+              <button onClick={handleAddProductToCart} className='btn'>Añadir</button>
             </div>
 
             

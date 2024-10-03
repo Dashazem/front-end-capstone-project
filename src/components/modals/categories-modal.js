@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import { NavLink } from 'react-router-dom';
 
-//TODO ReactModal.setAppElement('.app-wrapper');
+ReactModal.setAppElement('body');
 
 export default class CategoriesModal extends Component {
   constructor(props) {
@@ -17,11 +17,12 @@ export default class CategoriesModal extends Component {
         marginLeft: "0",
         width: "300px",
         height: "auto", 
-        paddingTop: "40px" 
+        paddingTop: "40px"
       },
 
       overlay: {
-        backgroundColor: "rgba(255,255,255, 0)"
+        backgroundColor: "rgba(255,255,255, 0)",
+        zIndex: "1000"
       }
     }
 
@@ -50,7 +51,7 @@ export default class CategoriesModal extends Component {
 
   render() {
     return (
-      <div>
+      <div className='categories-modal-wrapper'>
         <ReactModal style={this.customStyles} onRequestClose={() => {this.props.handleCloseAllCategories();}} isOpen={this.props.modalIsOpen}>
           <div className='category-links'>
             <div className='category-link'>

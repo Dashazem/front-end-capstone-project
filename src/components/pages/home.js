@@ -19,7 +19,7 @@ export default class Home extends Component {
                 <Image
                   src={juguetes}
                   alt="Juguetes image"
-                  layout="fill"
+                  fill
                   objectFit="cover"
                   priority
                 />
@@ -41,7 +41,7 @@ export default class Home extends Component {
                 <Image
                   src={mordedores}
                   alt="Mordedores image"
-                  layout="fill"
+                  fill
                   objectFit="cover"
                   priority
                 />
@@ -55,7 +55,7 @@ export default class Home extends Component {
                 <Image
                   src={patucos}
                   alt="Patucos image"
-                  layout="fill"
+                  fill
                   objectFit="cover"
                   priority
                 />
@@ -77,7 +77,7 @@ export default class Home extends Component {
               <Image
                 src={moviles}
                 alt="Moviles image"
-                layout="fill"
+                fill
                 objectFit="cover"
                 priority
               />

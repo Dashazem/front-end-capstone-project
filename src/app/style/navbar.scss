@@ -4,7 +4,10 @@
   align-items: center;
   padding: 10px;
   height: 100px;
-  
+  position: sticky; 
+  top: 0;           
+  background-color: white; 
+  z-index: 100;
 
   .nav-icon {
     cursor: pointer;
@@ -32,9 +35,5 @@
       max-height: 100%; 
       display: block; 
     }
-
   }
-
-  
-  
 }

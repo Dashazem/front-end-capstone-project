@@ -14,16 +14,16 @@
     overflow: hidden;
 
     .slick-slide {
-      height: 550px; // Встановлюємо висоту слайдів в 100%
-      display: flex; // Додаємо flex для центрування зображення
-      align-items: center; // Центруємо по вертикалі
-      justify-content: center; // Центруємо по горизонталі
+      height: 550px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
     }
 
     .slick-slide img {
       width: 100%; 
       height: 100%; 
-      object-fit: cover; // Зберігаємо пропорції зображення, обрізаємо, якщо потрібно
+      object-fit: cover; 
     }
 
     img {
@@ -31,13 +31,10 @@
       height: 100%; 
       object-fit: cover; 
     }
-
-    
-    
   }
 
   .right-column {
-   // border: 1px solid black;
+   
     padding-top: 0px;
     padding-bottom: 20px;
     padding-left: 30px;
@@ -51,34 +48,30 @@
     h3 {
       margin-top: 0px;
       margin-bottom: 0px;
-      
-      //text-transform: uppercase;
     }
 
     .btn-wrapper {
-      //margin: 30px;
       display: flex;
-      //justify-content: center;
       align-items: center;
       margin-top: 30px;
     }
   }
 
   .slick-dots {
-    bottom: 20px; // Встановлює відстань від нижньої частини
+    bottom: 20px;
     li {
       button {
         &:before {
-          font-size: 10px; // Розмір кружечків
-          color: $deep-grey; // Колір для кружечків
-          opacity: 1; // Зробити видимими
+          font-size: 10px;
+          color: $deep-grey; 
+          opacity: 1; 
           display: block;
-          content: '•'; // Знак, який буде показаний
+          content: '•'; 
         }
       }
 
       &.slick-active button:before {
-        color: $pastel-green; // Колір активного кружечка
+        color: $pastel-green; 
       }
     }
   }
