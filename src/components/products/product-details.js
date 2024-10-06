@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux'; 
 import axios from 'axios';
 import { worksans, playfair_display } from '../../app/fonts/fonts';
-import { addToCart } from '../../store/actions/cartActions';
+import { addToCart } from '../../store/reducers/cartReducer';
 
 
 import Slider from 'react-slick';

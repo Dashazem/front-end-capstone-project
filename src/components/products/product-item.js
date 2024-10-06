@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from 'react-redux'; 
-import { addToCart } from '../../store/actions/cartActions';
+import { addToCart } from '../../store/reducers/cartReducer';
 
 import { worksans } from '../../app/fonts/fonts';
 

@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { worksans } from '../../app/fonts/fonts';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { increaseItemQuantity } from '../../store/actions/cartActions';
+import { increaseItemQuantity } from '../../store/reducers/cartReducer';
 
 const Cart = ({ items, increaseItemQuantity }) => {
   const navigate = useNavigate(); 
+  console.log("Cart render: ", items);
 
   const getTotalAmount = () => {
     const total = items.reduce((total, item) => {
@@ -73,7 +74,7 @@ const Cart = ({ items, increaseItemQuantity }) => {
                   </div>
 
                   <div>
-                    <button className='icon-button' onClick={() => increaseItemQuantity(item.id)}>
+                    <button className='icon-button' onClick={() => increaseItemQuantity({ id: item.id })}>
                       <FontAwesomeIcon icon="circle-plus" className='cart-icon'/>
                     </button>
                   </div>

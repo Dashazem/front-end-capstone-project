@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/actions/authActions';
 
+
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,17 +13,52 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
+  
 
+  
+  
   const handleCreateAccountClick = () => {
     navigate('/register'); 
   };
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
+    if (!email || !password) {
+        setErrorMessage('Correo electrónico o contraseña no puede ser vacío');
+        return;
+    }
+
+    setSuccessMessage('');
+    setErrorMessage('');
+
+    console.log("Login request:", { email, password });
+
+    dispatch(login(email, password));
+    
+
+    setSuccessMessage('Se ha iniciado sesión correctamente');
+    
+    setTimeout(() => {
+      navigate('/');
+    }, 2000);
+    
+  };
+
+
+  /*const auth = useSelector(state => state.auth);
+  const errorMessage = auth.error;
+
+  useEffect(() => {
+      if (errorMessage) {
+          setErrorMessage(errorMessage);
+      }
+  }, [errorMessage]);*/
+
+  /*const handleLogin = async () => {
     if (!email || !password) {
       setErrorMessage('Correo electrónico o contraseña no puede ser vacío');
       return;
      }
-     
+
      setSuccessMessage('');
      setErrorMessage('');
      
@@ -36,7 +73,7 @@ const Login = () => {
       setErrorMessage('Correo electrónico o contraseña incorrectos');
       setSuccessMessage('');
     }
-  };
+  };*/
 
   return (
     <div className='login-wrapper'>
