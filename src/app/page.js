@@ -13,6 +13,7 @@ import store from '../store/store';
 
 import Footer from '../components/navigation/footer';
 import ProductDetails from '../components/products/product-details';
+import CreateAccount from "../components/pages/create-account";
 
 export default function App() {
   Icons();
@@ -30,6 +31,17 @@ export default function App() {
               <Route exact path="/categories/:slug" element={<Products />} />
               <Route path="/products" element={<Products />} />
               <Route path="/product/:product_id" element={<ProductDetails />} />
+              <Route path="/register" element={<CreateAccount />} />
+              {/* <Route path="/admin" element={
+                <ProtectedRoute role="ADMIN">
+                    <AdminComponent />
+                </ProtectedRoute>
+              } />
+              <Route path="/user" element={
+                <ProtectedRoute role="USER">
+                    <UserComponent />
+                </ProtectedRoute>
+              } /> */}
             </Routes>
 
             <Footer />

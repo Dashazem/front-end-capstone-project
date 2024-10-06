@@ -1,0 +1,76 @@
+.create-account-wrapper {
+  text-align: center;
+  margin-left: 150px;
+  margin-right: 150px;
+
+  .succes-message p {
+    color: $dark-blue;
+  }
+
+  .error-message p {
+    color: $pastel-dark-pink;
+  }
+
+  .form-wrapper {
+    margin-bottom: 60px;
+    .form-container {
+      display: grid;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+
+      .left-column,
+      .right-column {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 45%;
+
+        @include input-element();
+        input {
+          width: 80%;
+        }
+
+        .password {
+          margin-bottom: 15px;
+        }
+
+        .phone-input {
+          @include input-element();
+          margin-bottom: 35px;
+          margin-top: 0px;
+          
+          input {
+            margin-left: 40px;
+            width: 400px;
+          }
+          .flag-dropdown {
+            margin-left: -3px;
+            // Негативний відступ для зміщення прапора наліво
+          }
+          
+        }
+
+        label {
+         text-align: left;
+         width: 80%;
+
+         p {
+          margin: 0px;
+          font-size: 0.8em;
+         }
+        }
+
+        
+        
+       
+      }
+
+  
+
+    }
+
+  }
+}
