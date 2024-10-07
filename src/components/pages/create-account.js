@@ -40,11 +40,13 @@ const CreateAccount = () => {
           [keys[1]]: value
         }
       }));
+      
     } else {
       setFormData(prevState => ({
         ...prevState,
         [name]: value
       }));
+      setErrorMessage('');
     }
   };
 
@@ -98,7 +100,7 @@ const CreateAccount = () => {
     <div className='create-account-wrapper'>
       <h3>¿NO TIENES CUENTA? REGÍSTRATE</h3>
 
-      <div className='succes-message'>
+      <div className='success-message'>
         {successMessage && <p>{successMessage}</p>}
       </div>
 

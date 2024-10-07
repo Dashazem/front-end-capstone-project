@@ -1,52 +1,33 @@
-/*import { LOGIN_SUCCESS, LOGIN_FAIL } from '../actions/authActions';
-
-const initialState = {
-    email: null,
-    role: null,
-    error: null,
-};
-
-const authReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case LOGIN_SUCCESS:
-            return {
-                ...state,
-                email: action.payload.email,
-                role: action.payload.role,
-                error: null,
-            };
-        case LOGIN_FAIL:
-            return {
-                ...state,
-                error: action.payload,
-            };
-        default:
-            return state;
-    }
-};
-
-export default authReducer;*/
-
-// store/authReducer.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: { email: null, role: null, error: null },
+  initialState: { email: null, role: null, first_name: null, id: null, error: null },
   reducers: {
     loginSuccess(state, action) {
-      state.email = action.payload.email;
-      state.role = action.payload.role;
+      const { email, role, first_name, id } = action.payload; 
+      state.email = email;
+      state.role = role;
+      state.first_name = first_name; 
+      state.id = id;               
       state.error = null;
     },
     loginFail(state, action) {
       state.error = action.payload;
     },
+    logout(state) { 
+      state.email = null;
+      state.role = null;
+      state.first_name = null;
+      state.id = null;
+      state.error = null;
+    },
   },
 });
 
-export const { loginSuccess, loginFail } = authSlice.actions;
+export const { loginSuccess, loginFail, logout } = authSlice.actions;
 export default authSlice.reducer;
+
 
 
 

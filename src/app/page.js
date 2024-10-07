@@ -14,6 +14,18 @@ import store from '../store/store';
 import Footer from '../components/navigation/footer';
 import ProductDetails from '../components/products/product-details';
 import CreateAccount from "../components/pages/create-account";
+import User from "../components/pages/user";
+import Admin from "../components/pages/admin";
+import UserProfile from "../components/user/user-profile";
+import UserOrders from "../components/user/user-orders";
+import UserAddresses from "../components/user/user-addresses";
+import UserPaymentDetails from "../components/user/user-payment-details";
+import AdminOrders from "../components/admin/admin-orders";
+import AdminCustomers from "../components/admin/admin-customers";
+import AdminProfile from "../components/admin/admin-profile";
+import CreateAdmin from "../components/admin/create-admin";
+import DeleteAccount from "../components/pages/delete-account";
+
 
 export default function App() {
   Icons();
@@ -42,6 +54,18 @@ export default function App() {
                     <UserComponent />
                 </ProtectedRoute>
               } /> */}
+              <Route path="/user" element={<User />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/user/profile" element={<UserProfile />} />
+              <Route path="/user/orders" element={<UserOrders />} />
+              <Route path="/user/addresses" element={<UserAddresses />} />
+              <Route path="/user/payment-details" element={<UserPaymentDetails />} />
+
+              <Route path="/admin/profile" element={<AdminProfile />} />
+              <Route path="/admin/orders" element={<AdminOrders />} />
+              <Route path="/admin/customers" element={<AdminCustomers />} />
+              <Route path="/admin/create-admin" element={<CreateAdmin />} />
+              <Route path="/delete-account" element={<DeleteAccount />} />
             </Routes>
 
             <Footer />

@@ -11,6 +11,7 @@
 @import "./cart.scss";
 @import "./login.scss";
 @import "./create-account.scss";
+@import "./account.scss";
 
 body {
   margin: 0px;
@@ -29,21 +30,5 @@ p {
   color: $dark-grey;
 }
 
-.btn {
-  background: none;            
-  border: none; 
-  border-radius: 5px;             
-  padding: 15px 40px;                 
-  cursor: pointer; 
-  background-color: $pastel-dark-green;
-  color: $dark-grey;
-  font-size: 1rem;
-  font-weight: 500;
-  border: 1px solid transparent;
-  transition: all 0.5s ease-in-out;
- 
-  &:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
-  }
-}
+
 

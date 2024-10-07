@@ -3,7 +3,7 @@
   margin-left: 150px;
   margin-right: 150px;
 
-  .succes-message p {
+  .success-message p {
     color: $dark-blue;
   }
 
@@ -13,6 +13,8 @@
 
   .form-wrapper {
     margin-bottom: 60px;
+    @include button();
+    
     .form-container {
       display: grid;
       display: flex;

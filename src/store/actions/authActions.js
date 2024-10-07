@@ -1,24 +1,3 @@
-/*import axios from 'axios';
-
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAIL = "LOGIN_FAIL";
-
-export const login = (email, password) => {
-    return async (dispatch) => {
-        try {
-            const response = await axios.post('http://127.0.0.1:5000/login', { email, password });
-            console.log("API Response:", response);
-            const { role } = response.data; // роль, отримана з API
-            
-            // Зберігаємо email та роль у стані Redux
-            dispatch({ type: LOGIN_SUCCESS, payload: { email, role } });
-        } catch (error) {
-            dispatch({ type: LOGIN_FAIL, payload: error.response.data.error });
-        }
-    };
-};*/
-
-// store/actions/authActions.js
 import axios from 'axios';
 import { loginSuccess, loginFail } from '../reducers/authReducer';
 
@@ -26,13 +5,18 @@ export const login = (email, password) => {
     return async (dispatch) => {
         try {
             const response = await axios.post('http://127.0.0.1:5000/login', { email, password });
-            const { role } = response.data; 
-            dispatch(loginSuccess({ email, role }));
+            const { role, first_name, id } = response.data; 
+            dispatch(loginSuccess({ email, role, first_name, id })); 
+            return { type: 'LOGIN_SUCCESS' };
         } catch (error) {
-            dispatch(loginFail(error.response.data.error));
+            dispatch(loginFail(error));
+            return { type: 'LOGIN_FAIL', error: 'Correo electrónico o contraseña incorrectos' };
         }
     };
 };
+
+
+
 
 
 

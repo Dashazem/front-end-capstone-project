@@ -1,66 +1,3 @@
-/*.login-wrapper {
-  margin-top: 60px;
-  margin-bottom: 150px;
-  margin-right: 150px;
-  margin-left: 150px;
-  text-align: center; 
-  
-  h2 {
-    margin-bottom: 50px;
-  }
-  
-  
-  .login-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 50px;
-   
-
-    .left-column {
-      
-      .input-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 50px;
-        margin-top: 50px;
-      }
-
-      .btn {
-        background-color: $pastel-pink;
-      }
-    }
-
-    .right-column {
-      
-
-      .right-column-text {
-        display: flex;
-       flex-direction: column;
-        margin-bottom: 60px;
-
-
-        p {
-          margin: 20px;
-          text-align: left;
-
-          .text-icon {
-            color: $dark-blue;
-            margin-right: 8px;
-          }
-        }
-      }
-
-      .btn {
-        margin-top: auto;
-        background-color: $pastel-pink;
-      }
-
-      
-    }
-  }
-}*/
-
 .login-wrapper {
   margin-top: 20px;
   margin-bottom: 40px;
@@ -76,6 +13,16 @@
     display: flex;  
     justify-content: space-between; 
     margin: 0 -25px; 
+
+    .success-message p {
+      color: $dark-blue;
+      font-size: 0.8em;
+    }
+
+    .error-message p {
+      color: $pastel-dark-pink;
+      font-size: 0.8em;
+    }
 
     .left-column, .right-column {
       flex: 1; 
@@ -94,6 +41,7 @@
       @include input-element();
     }
 
+    @include button();
     .btn {
       background-color: $pastel-pink;
       margin-top: auto; 

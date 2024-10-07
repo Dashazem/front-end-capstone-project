@@ -1,83 +1,89 @@
-'use client';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
-
 import Image from 'next/image';
 import logo from '../../../static/assets/images/logo/logo-shop.png';
 import CategoriesModal from '../modals/categories-modal';
 
-export default class NavBar extends Component {
-  constructor() {
-    super();
+const NavBar = () => {
+  const userEmail = useSelector(state => state.auth.email); 
+  const userRole = useSelector(state => state.auth.role);
+  const userName = useSelector(state => state.auth.first_name);
+  const [categoriesModalIsOpen, setCategoriesModalIsOpen] = useState(false);
 
-    this.state = {
-      userStatus: "",
-      categoriesModalIsOpen: false
-    }
+  const handleOpenAllCategoriesClick = () => {
+    setCategoriesModalIsOpen(true);
+  };
 
-    this.handleOpenAllCategoriesClick =  this.handleOpenAllCategoriesClick.bind(this);
-    this.handleCloseAllCategories = this.handleCloseAllCategories.bind(this);
-  }
+  const handleCloseAllCategories = () => {
+    setCategoriesModalIsOpen(false);
+  };
 
-  handleOpenAllCategoriesClick() {
-    this.setState({
-      categoriesModalIsOpen: true
-    });
-  } 
+  return (
+    <div className='navbar'>
+      <div>
+        <CategoriesModal 
+          handleCloseAllCategories={handleCloseAllCategories} 
+          modalIsOpen={categoriesModalIsOpen} 
+        /> 
+        <a onClick={handleOpenAllCategoriesClick}>
+          <FontAwesomeIcon icon="fa-bars" className='nav-icon' />
+        </a>
+      </div>
 
-  handleCloseAllCategories() {
-    this.setState({
-      categoriesModalIsOpen: false
-    });
-  }
+      <div className='central-column'>
+        <NavLink to="/">
+          <Image
+            src={logo}
+            alt="Logo"
+            layout="fill"
+            objectFit="cover"
+            priority
+          />
+        </NavLink>
+      </div>
 
-  render() {
-    return (
-      <div className='navbar'>
-        
-        <div>
-          <CategoriesModal 
-            handleCloseAllCategories={this.handleCloseAllCategories} 
-            modalIsOpen={this.state.categoriesModalIsOpen} 
-          /> 
-          <a onClick={this.handleOpenAllCategoriesClick}><FontAwesomeIcon icon="fa-bars" className='nav-icon' /></a>
-        </div>
-
-        <div className='central-column'>
-          <NavLink to="/">
-            <Image
-              src={logo}
-              alt="Logo"
-              layout="fill"
-              objectFit="cover"
-              priority
-            />
-          </NavLink>
-        </div>
-
-        <div className='right-side'>
-          {this.state.userStatus === "ADMIN" ? 
-            (<div>
-            <NavLink to="/login">
-              <FontAwesomeIcon icon="fa-user-tie" className='nav-icon'/>
-            </NavLink>
-            </div>)
-          : (<div>
-            <NavLink to="/login">
-              <FontAwesomeIcon icon="fa-user" className='nav-icon'/>
-            </NavLink>
-          </div>) }
-          
-          
+      <div className='right-side'>
+         
+        {userEmail ? (
+          userRole === "ADMIN" ? (
+            <div className='icon-wrapper'>
+              <NavLink to="/admin">
+                <FontAwesomeIcon icon="fa-user-tie" className='nav-icon' />
+              </NavLink>
+              <div className='user-name'>{userName}</div>
+            </div>
+          ) : userRole === "USER" ? (
+            <div className='icon-wrapper'>
+              <NavLink to="/user">
+                <FontAwesomeIcon icon="fa-user" className='nav-icon' />
+              </NavLink>
+              <div className='user-name'>{userName}</div>
+            </div>
+          ) : (
+            <div>
+              <NavLink to="/login">
+                <FontAwesomeIcon icon="fa-user" className='nav-icon' />
+              </NavLink>
+            </div>
+        )) : (
           <div>
-            <NavLink to="/cart">
-              <FontAwesomeIcon icon="fa-bag-shopping" className='nav-icon'/>
+            <NavLink to="/login">
+              <FontAwesomeIcon icon="fa-user" className='nav-icon' />
             </NavLink>
           </div>
+        )}
+
+        <div>
+          <NavLink to="/cart">
+            <FontAwesomeIcon icon="fa-bag-shopping" className='nav-icon' />
+          </NavLink>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default NavBar;
+

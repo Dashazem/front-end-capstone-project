@@ -2,78 +2,50 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux'; 
 import { login } from '../../store/actions/authActions';
-
-
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
-  
 
-  
   
   const handleCreateAccountClick = () => {
     navigate('/register'); 
   };
 
-  const handleLogin = () => {
-    if (!email || !password) {
-        setErrorMessage('Correo electrónico o contraseña no puede ser vacío');
-        return;
-    }
 
-    setSuccessMessage('');
-    setErrorMessage('');
+  const handleLogin = async () => {
+    setSuccessMessage('');  
+    setErrorMessage('');  
 
-    console.log("Login request:", { email, password });
-
-    dispatch(login(email, password));
-    
-
-    setSuccessMessage('Se ha iniciado sesión correctamente');
-    
-    setTimeout(() => {
-      navigate('/');
-    }, 2000);
-    
-  };
-
-
-  /*const auth = useSelector(state => state.auth);
-  const errorMessage = auth.error;
-
-  useEffect(() => {
-      if (errorMessage) {
-          setErrorMessage(errorMessage);
-      }
-  }, [errorMessage]);*/
-
-  /*const handleLogin = async () => {
     if (!email || !password) {
       setErrorMessage('Correo electrónico o contraseña no puede ser vacío');
       return;
-     }
-
-     setSuccessMessage('');
-     setErrorMessage('');
-     
-     try {
-      await dispatch(login(email, password));
-      console.log("Response:", response);
-      setSuccessMessage('Se ha iniciado sesión correctamente');
-      setErrorMessage('');
-      navigate('/'); 
-    } catch (error) {
-      console.error("Error:", error); 
-      setErrorMessage('Correo electrónico o contraseña incorrectos');
-      setSuccessMessage('');
     }
-  };*/
+
+    try {
+      const resultAction = await dispatch(login(email, password));
+      if (resultAction.type === 'LOGIN_SUCCESS') {
+        setSuccessMessage('Se ha iniciado sesión correctamente');
+
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
+
+      } else if (resultAction.type === 'LOGIN_FAIL') {
+        setErrorMessage(resultAction.error);
+      }
+    } catch (err) {
+      setErrorMessage('Ha ocurrido un error, por favor Inténtalo de nuevo');
+    }
+  };
 
   return (
     <div className='login-wrapper'>
@@ -99,8 +71,8 @@ const Login = () => {
 
           <button className='btn' onClick={handleLogin}>INICIAR SESIÓN</button>
 
-          {successMessage && <div className="success-message">{successMessage}</div>}
-          {errorMessage && <div className="error-message">{errorMessage}</div>}
+          {successMessage && <div className='success-message'><p>{successMessage}</p></div>} 
+          {errorMessage && <div className='error-message'><p>{errorMessage}</p></div>} 
         </div>
 
         <div className='right-column'>
