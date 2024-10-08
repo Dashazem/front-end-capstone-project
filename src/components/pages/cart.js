@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { worksans } from '../../app/fonts/fonts';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { increaseItemQuantity } from '../../store/reducers/cartReducer';
+import { increaseItemQuantity, decreaseItemQuantity } from '../../store/reducers/cartReducer';
 
-const Cart = ({ items, increaseItemQuantity }) => {
+const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity }) => {
   const navigate = useNavigate(); 
   console.log("Cart render: ", items);
 
@@ -64,8 +64,8 @@ const Cart = ({ items, increaseItemQuantity }) => {
 
                 <div className='icons'>
                   <div>
-                    <button className='icon-button'>
-                      <FontAwesomeIcon icon="trash" className='cart-icon'/>
+                  <button className='icon-button' onClick={() => decreaseItemQuantity({ id: item.id })}>
+                      <FontAwesomeIcon icon="circle-minus" className='cart-icon'/>
                     </button>
                   </div>
 
@@ -108,5 +108,5 @@ const mapStateToProps = (state) => ({
   items: state.cart.items,
 });
 
-export default connect(mapStateToProps, { increaseItemQuantity })(Cart);
+export default connect(mapStateToProps, { increaseItemQuantity, decreaseItemQuantity })(Cart);
 

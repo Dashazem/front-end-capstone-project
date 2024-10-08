@@ -51,6 +51,7 @@
     }
 
     .btn-wrapper {
+      @include button();
       display: flex;
       align-items: center;
       margin-top: 30px;

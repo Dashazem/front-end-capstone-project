@@ -20,11 +20,14 @@ import UserProfile from "../components/user/user-profile";
 import UserOrders from "../components/user/user-orders";
 import UserAddresses from "../components/user/user-addresses";
 import UserPaymentDetails from "../components/user/user-payment-details";
+import UserAddAddress from "../components/user/user-add-address";
+import UserEditAddress from "../components/user/user-edit-address";
 import AdminOrders from "../components/admin/admin-orders";
 import AdminCustomers from "../components/admin/admin-customers";
 import AdminProfile from "../components/admin/admin-profile";
 import CreateAdmin from "../components/admin/create-admin";
 import DeleteAccount from "../components/pages/delete-account";
+
 
 
 export default function App() {
@@ -59,6 +62,8 @@ export default function App() {
               <Route path="/user/profile" element={<UserProfile />} />
               <Route path="/user/orders" element={<UserOrders />} />
               <Route path="/user/addresses" element={<UserAddresses />} />
+              <Route path="/add-address" element={<UserAddAddress />} />
+              <Route path="/edit-address/:addressId" element={<UserEditAddress />} />
               <Route path="/user/payment-details" element={<UserPaymentDetails />} />
 
               <Route path="/admin/profile" element={<AdminProfile />} />

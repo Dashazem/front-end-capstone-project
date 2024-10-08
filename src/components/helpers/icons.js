@@ -7,6 +7,7 @@ import {
   faBars,
   faHouse,
   faClipboard,
+  faCircleMinus,
   faSquarePlus,
   faTrash, 
   faSignOutAlt, 
@@ -20,7 +21,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Icons = () => {
-  return library.add(faUser, faUserTie, faBagShopping, faBars, faHouse, faClipboard, faSquarePlus, faTrash, faSignOutAlt, faEdit, faSpinner, faPlusCircle, faPhone, faEnvelope, faMapMarkedAlt, faLock);
+  return library.add(faUser, faUserTie, faBagShopping, faBars, faHouse, faClipboard, faCircleMinus, faSquarePlus, faTrash, faSignOutAlt, faEdit, faSpinner, faPlusCircle, faPhone, faEnvelope, faMapMarkedAlt, faLock);
 }
 
 export default Icons;
