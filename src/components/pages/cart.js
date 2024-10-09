@@ -1,20 +1,22 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { connect, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { worksans } from '../../app/fonts/fonts';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { increaseItemQuantity, decreaseItemQuantity } from '../../store/reducers/cartReducer';
 
-const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity }) => {
+const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity, auth }) => {
   const navigate = useNavigate(); 
-  console.log("Cart render: ", items);
+  const [message, setMessage] = useState(''); 
+  const totalAmount = useSelector(state => state.cart.totalAmount);
+  
 
-  const getTotalAmount = () => {
+  /*const getTotalAmount = () => {
     const total = items.reduce((total, item) => {
       return total + (item.price * item.quantity);
     }, 0);
     return Number(total.toFixed(2)); 
-  };
+  };*/
 
   const handleLoginClick = () => {
     navigate('/login'); 
@@ -31,6 +33,16 @@ const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity }) => {
     }, 0);
   };
 
+  const handleStartOrder = () => {
+    if (auth.role === "ADMIN") {
+      setMessage("No se puede tramitar pedido para Administrador");
+    } else if (auth.role === "USER") {
+      navigate('/order-address');
+    } else {
+      navigate('/login');
+    }
+  };
+//TODO переглянути чи можна зарекуперарити корзину якщо залогінився якщо ні то видалити ту кнопку або поставити умова що залогінений
   return (
     <div>
       {items.length === 0 ? (
@@ -39,7 +51,7 @@ const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity }) => {
           
           <p>También puedes recuperar tu cesta al iniciar sesión</p>
 
-          <button className='btn' onClick={handleLoginClick}>INICIAR SESIÓN</button>
+          <button className='btn' onClick={handleLoginClick}>INICIAR SESIÓN</button> 
         </div>
       ) : (
         <div className='full-cart-wrapper'>
@@ -85,12 +97,13 @@ const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity }) => {
 
           <div className='process-order-contaniner'>
             <div className='process-order-button' >
-              <button className='btn'>TRAMITAR PEDIDO</button>
+              <button className='btn' onClick={handleStartOrder}>TRAMITAR PEDIDO</button>
+              {message && <p>{message}</p>}
             </div>
 
             <div className='process-order-content'>
               <div className='process-order-price'>
-                <h4 className={`${worksans.className}`}>TOTAL {getTotalAmount().toFixed(2)} EUR</h4>
+                <h4 className={`${worksans.className}`}>TOTAL {totalAmount.toFixed(2)} EUR</h4>
               </div>
 
               <div className='process-order-text'>
@@ -106,6 +119,7 @@ const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity }) => {
 
 const mapStateToProps = (state) => ({
   items: state.cart.items,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { increaseItemQuantity, decreaseItemQuantity })(Cart);

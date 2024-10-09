@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux'; 
 import axios from 'axios';
 
 export default function UserAddresses() {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const customerData = location.state?.customerData; 
+  const navigate = useNavigate(); 
   const [addresses, setAddresses] = useState([]);
   const [message, setMessage] = useState(''); 
+  const userId = useSelector(state => state.auth.id);
 
   useEffect(() => {
     const fetchAddresses = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:5000/customers/${customerData.customer_id}/addresses`);
+        const response = await axios.get(`http://127.0.0.1:5000/customers/${userId}/addresses`);
         setAddresses(response.data.addresses);
       } catch (error) {
         console.error('Error fetching addresses:', error);
@@ -21,7 +20,7 @@ export default function UserAddresses() {
     };
 
     fetchAddresses();
-  }, [customerData.customer_id]);
+  }, [userId]);
 
   const handleEditAddress = (addressId) => {
     navigate(`/edit-address/${addressId}`); 

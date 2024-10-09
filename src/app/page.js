@@ -27,6 +27,8 @@ import AdminCustomers from "../components/admin/admin-customers";
 import AdminProfile from "../components/admin/admin-profile";
 import CreateAdmin from "../components/admin/create-admin";
 import DeleteAccount from "../components/pages/delete-account";
+import OrderAddress from '../components/order/order-address';
+import OrderPayment from "../components/order/order-payment";
 
 
 
@@ -71,6 +73,11 @@ export default function App() {
               <Route path="/admin/customers" element={<AdminCustomers />} />
               <Route path="/admin/create-admin" element={<CreateAdmin />} />
               <Route path="/delete-account" element={<DeleteAccount />} />
+
+              <Route path="/order-address" element={<OrderAddress />} />
+              <Route path="/order-payment" element={<OrderPayment />} />
+
+
             </Routes>
 
             <Footer />
