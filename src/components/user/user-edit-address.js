@@ -61,7 +61,7 @@ export default function UserEditAddress() {
       });
       setMessage('Dirección actualizada correctamente!');
       setTimeout(() => {
-        navigate('/user'); 
+        navigate('/user/addresses'); 
       }, 2000);
     } catch (error) {
       console.error('Error updating address:', error);

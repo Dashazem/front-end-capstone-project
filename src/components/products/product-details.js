@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux'; 
+import { useDispatch, useSelector } from 'react-redux'; 
 import axios from 'axios';
 import { worksans, playfair_display } from '../../app/fonts/fonts';
 import { addToCart } from '../../store/reducers/cartReducer';
@@ -8,15 +8,19 @@ import { addToCart } from '../../store/reducers/cartReducer';
 
 import Slider from 'react-slick';
 import ShoppingCartModal from '../modals/cart-modal';
+import EditProduct from './product-edit';
 
 import "../../../node_modules/slick-carousel/slick/slick.css"; 
 import "../../../node_modules/slick-carousel/slick/slick-theme.css"; 
 
 const ProductDetails = () => {
+  const dispatch = useDispatch();
   const { product_id } = useParams(); 
   const [product, setProduct] = useState(null);
   const [cartModalIsOpen, setCartModalIsOpen] = useState(false);
-  const dispatch = useDispatch();
+  const [isEditing, setIsEditing] = useState(false);
+  
+  const userRole = useSelector((state) => state.auth.role);
 
   useEffect(() => {
     getProduct(product_id);
@@ -83,6 +87,14 @@ const ProductDetails = () => {
     console.log(`Product ID: ${products_id} added to cart`);
   };
 
+    const toggleEdit = () => {
+      setIsEditing(!isEditing);
+  };
+
+  if (isEditing && product) {
+      return <EditProduct product={product} onClose={toggleEdit} />;
+  }
+
   return (
     
 
@@ -126,6 +138,10 @@ const ProductDetails = () => {
 
             <div className='btn-wrapper'>
               <button onClick={handleAddProductToCart} className='btn'>Añadir</button>
+
+              {userRole === 'ADMIN' && (
+                <button onClick={toggleEdit} className='btn'>Editar</button>
+              )}
             </div>
 
             

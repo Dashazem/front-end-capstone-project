@@ -54,9 +54,6 @@ export default function User() {
           <NavLink to="/user/addresses" state={{ customerData }}>MIS DIRECCIONES</NavLink><br/>
         </div>
         
-        <div className='category-link'>
-          <NavLink to="/user/payment-details">MIS MÉTODOS DE PAGO</NavLink><br/>
-        </div>
       </div>
       
       <div className='button-wrapper'>

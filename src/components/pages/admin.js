@@ -31,6 +31,10 @@ export default function Admin() {
         <div className='category-link'>
           <NavLink to="/admin/create-admin">AGREGAR NUEVO ADMINISTRADOR</NavLink><br/>
         </div>
+
+        <div className='category-link'>
+          <NavLink to="/admin/create-product">CREAR NUEVO PRODUCTO</NavLink><br/>
+        </div>
       </div>
       
       <div className='button-wrapper'>

@@ -34,7 +34,7 @@ export default function UserAddAddress() {
       });
       setMessage('Dirección agregada correctamente!');
       setTimeout(() => {
-        navigate('/user');
+        navigate('/user/addresses');
       }, 2000);
 
     } catch (error) {

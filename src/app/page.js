@@ -19,16 +19,17 @@ import Admin from "../components/pages/admin";
 import UserProfile from "../components/user/user-profile";
 import UserOrders from "../components/user/user-orders";
 import UserAddresses from "../components/user/user-addresses";
-import UserPaymentDetails from "../components/user/user-payment-details";
 import UserAddAddress from "../components/user/user-add-address";
 import UserEditAddress from "../components/user/user-edit-address";
 import AdminOrders from "../components/admin/admin-orders";
 import AdminCustomers from "../components/admin/admin-customers";
 import AdminProfile from "../components/admin/admin-profile";
 import CreateAdmin from "../components/admin/create-admin";
+import CreateProduct from "../components/admin/create_product";
 import DeleteAccount from "../components/pages/delete-account";
 import OrderAddress from '../components/order/order-address';
 import OrderPayment from "../components/order/order-payment";
+import OrderSuccessPage from "../components/order/order-success-page";
 
 
 
@@ -66,16 +67,17 @@ export default function App() {
               <Route path="/user/addresses" element={<UserAddresses />} />
               <Route path="/add-address" element={<UserAddAddress />} />
               <Route path="/edit-address/:addressId" element={<UserEditAddress />} />
-              <Route path="/user/payment-details" element={<UserPaymentDetails />} />
 
               <Route path="/admin/profile" element={<AdminProfile />} />
               <Route path="/admin/orders" element={<AdminOrders />} />
               <Route path="/admin/customers" element={<AdminCustomers />} />
               <Route path="/admin/create-admin" element={<CreateAdmin />} />
+              <Route path="/admin/create-product" element={<CreateProduct />} />
               <Route path="/delete-account" element={<DeleteAccount />} />
 
               <Route path="/order-address" element={<OrderAddress />} />
               <Route path="/order-payment" element={<OrderPayment />} />
+              <Route path="/order-success" element={<OrderSuccessPage />} />
 
 
             </Routes>

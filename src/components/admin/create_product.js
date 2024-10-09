@@ -3,16 +3,17 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { DropzoneComponent } from 'react-dropzone-component';
 
-/*import "../../../node_modules/react-dropzone-component/styles/filepicker.css";
-import "../../../node_modules/dropzone/dist/min/dropzone.min.css";*/
 
-export default class CreateNewProduct extends Component {
+import "../../../node_modules/react-dropzone-component/styles/filepicker.css";
+import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
+
+export default class CreateProduct extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       products_name: "",
-      products_category: "",
+      products_category: "Juguetes",
       products_description: "",
       products_material: "",
       products_quantity: "",
@@ -24,7 +25,10 @@ export default class CreateNewProduct extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.componentConfig = this.componentConfig.bind(this);
     this.djsConfig = this.djsConfig.bind(this);
-    this.handleFeaturedImageDrop = this.handleFeaturedImageDrop.bind(this);
+    this.handleImageDrop = this.handleImageDrop.bind(this);
+    this.mainRef = React.createRef();
+    this.firstAdditionalRef = React.createRef();
+    this.secondAdditionalRef = React.createRef();
   }
 
   componentConfig() {
@@ -42,11 +46,23 @@ export default class CreateNewProduct extends Component {
     }
   }
 
-  handleFeaturedImageDrop = (file) => {
-    this.setState(prevState => ({
-        image_product: [...prevState.image_product, file]
-    }));
-}
+  handleImageDrop = (file, dropzone) => {
+    this.setState(prevState => {
+      const newImages = [...prevState.image_product]; // Make a copy of the current images
+  
+      // Replace the appropriate index with the new file
+      if (dropzone === 'main') {
+        newImages[0] = file; // Main image at index 0
+      } else if (dropzone === 'firstAdditional') {
+        newImages[1] = file; // First additional image at index 1
+      } else if (dropzone === 'secondAdditional') {
+        newImages[2] = file; // Second additional image at index 2
+      }
+  
+      return { image_product: newImages, successMessage: "" };
+    });
+  }
+  
 
 
   buildForm() {
@@ -64,17 +80,19 @@ export default class CreateNewProduct extends Component {
 
   buildImage() {
     let formData = new FormData();
-    if (this.state.image_product) {
-      this.state.image_product.forEach((image, index) => {
-          formData.append(`image_product_${index}`, image);
-      });
-    } 
+    this.state.image_product.forEach((image, index) => {
+      if (image) {
+        formData.append(`image_product_${index}`, image);
+      }
+    });
     return formData;
   }
+  
+  
 
   handleSubmit(event) {
     event.preventDefault(); 
-
+  
     const formData = this.buildForm(); 
     axios.post('http://127.0.0.1:5000/products', formData, {
         headers: {
@@ -83,11 +101,10 @@ export default class CreateNewProduct extends Component {
     })
     .then(response => {
         const productId = response.data.products_id; 
-
+  
         const imageFormData = this.buildImage();
-        // Додаємо productId до кожного зображення
         imageFormData.append('products_id', productId); 
-
+  
         return axios.post('http://127.0.0.1:5000/upload_image', imageFormData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -98,12 +115,17 @@ export default class CreateNewProduct extends Component {
         console.log('Image response', response);
         this.setState({
             products_name: "",
-            products_category: "",
+            products_category: "Juguetes",
             products_description: "",
             products_material: "",
             products_quantity: "",
             products_price: "",
-            image_product: []
+            image_product: {},
+            successMessage: "Producto creado con éxito."
+        });
+  
+        [this.mainRef, this.firstAdditionalRef, this.secondAdditionalRef].forEach(ref => {
+          ref.current.dropzone.removeAllFiles();
         });
     })
     .catch(error => {
@@ -111,10 +133,11 @@ export default class CreateNewProduct extends Component {
     });
   }
 
-       
+
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
+      successMessage: "" 
     })
   }
 
@@ -126,31 +149,27 @@ export default class CreateNewProduct extends Component {
             type="text"
             onChange={this.handleChange} 
             name="products_name"
-            placeholder="Nombre"
+            placeholder="Nombre*"
             value={this.state.products_name}
           />
 
-          <input 
-            type="text"
-            onChange={this.handleChange} 
+          <select 
             name="products_category"
-            placeholder="Categoría"
             value={this.state.products_category}
-          />
-
-          <textarea 
-            type="text"
-            onChange={this.handleChange} 
-            name="products_description"
-            placeholder="Descripción"
-            value={this.state.products_description}
-          />
+            onChange={this.handleChange}
+            className='select-element'
+          >
+            <option value='Juguetes'>Juguetes</option>
+            <option value='Patucos'>Patucos</option>
+            <option value='Moviles'>Moviles</option>
+            <option value='Mordedores'>Mordedores</option>
+          </select>
 
           <input 
             type="text"
             onChange={this.handleChange} 
             name="products_material"
-            placeholder="Material"
+            placeholder="Material*"
             value={this.state.products_material}
           />
      
@@ -158,7 +177,7 @@ export default class CreateNewProduct extends Component {
             type="text"
             onChange={this.handleChange} 
             name="products_quantity"
-            placeholder="Cantidad"
+            placeholder="Cantidad*"
             value={this.state.products_quantity}
           />
 
@@ -166,43 +185,60 @@ export default class CreateNewProduct extends Component {
             type="text"
             onChange={this.handleChange} 
             name="products_price"
-            placeholder="Precio"
+            placeholder="Precio* (ej. 15.00)"
             value={this.state.products_price}
+          />
+
+          <textarea 
+            type="text"
+            onChange={this.handleChange} 
+            name="products_description"
+            placeholder="Descripción*"
+            value={this.state.products_description}
           />
 
           <div>
             <DropzoneComponent
+              ref={this.mainRef}
               config={this.componentConfig()}
               djsConfig={this.djsConfig()}
               eventHandlers={{
-                addedfile: this.handleFeaturedImageDrop,
+                addedfile: (file) => this.handleImageDrop(file, 'main'),
               }}
             >
-              <div className='dz-message'>Product Image</div>
+              <div className='dz-message'>Imagen Principal*</div>
             </DropzoneComponent>
 
             <DropzoneComponent
+              ref={this.firstAdditionalRef}
               config={this.componentConfig()}
               djsConfig={this.djsConfig()}
               eventHandlers={{
-                addedfile: this.handleFeaturedImageDrop,
+                addedfile: (file) => this.handleImageDrop(file, 'firstAdditional'),
               }}
             >
-              <div className='dz-message'>Product Image</div>
+              <div className='dz-message'>Imagen Adicional 1</div>
             </DropzoneComponent>
 
             <DropzoneComponent
+              ref={this.secondAdditionalRef}
               config={this.componentConfig()}
               djsConfig={this.djsConfig()}
               eventHandlers={{
-                addedfile: this.handleFeaturedImageDrop,
+                addedfile: (file) => this.handleImageDrop(file, 'secondAdditional'),
               }}
             >
-              <div className='dz-message'>Product Image</div>
+              <div className='dz-message'>Imagen Adicional 2</div>
             </DropzoneComponent>
           </div> 
 
           <button className='btn'>Save</button>
+
+          {this.state.successMessage && (
+            <div className="success-message">
+              {this.state.successMessage}
+            </div>
+          )}
         </form>
       </div>
     );

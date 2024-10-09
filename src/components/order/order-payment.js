@@ -10,7 +10,7 @@ import { clearCart } from '../../store/reducers/cartReducer';
 import { createNewOrder } from '../../store/reducers/orderReducer';
 
 
-const PayPalButtonComponent = ({ productPrice }) => {
+const PayPalButtonComponent = () => {
   const totalAmount = useSelector(state => state.cart.totalAmount);
  
   const auth = useSelector(state => state.auth);
@@ -29,7 +29,6 @@ const PayPalButtonComponent = ({ productPrice }) => {
   };
 
   const createOrder = (data, actions) => {
-    console.log('Actions:', actions);
     return actions.order.create({
       purchase_units: [
         {
@@ -53,21 +52,25 @@ const PayPalButtonComponent = ({ productPrice }) => {
         amount: details.purchase_units[0].amount.value,
       };
 
-      const orderDetails = {
-        orders_number: `ORD-${details.id}`, 
-        orders_products_id: cartItems.map(item => item.id),
-        orders_product_quantity: cartItems.map(item => item.quantity),
-        orders_customers_id: auth.id,
-        orders_addresses_id: selectedAddress,
-        orders_total_price: totalAmount.toFixed(2),
-      };
+      
   
       axios.post('http://localhost:5000/transactions', transactionData)
         .then(response => {
-          console.log('Server response:', response.data);
+          const transactionId = response.data.transaction_id;
+
+          const orderDetails = {
+            orders_number: `ORD-${details.id}`, 
+            orders_products_id: cartItems.map(item => item.id),
+            orders_product_quantity: cartItems.map(item => item.quantity),
+            orders_customers_id: auth.id,
+            orders_addresses_id: selectedAddress,
+            orders_total_price: totalAmount.toFixed(2),
+            orders_transactions_id: transactionId
+          };
+
           dispatch(createNewOrder(orderDetails)); 
           dispatch(clearCart());
-          navigate('/');
+          navigate('/order-success', { state: { orders_number: orderDetails.orders_number } });
         })
         .catch(error => {
           console.error('Error during server request:', error);
