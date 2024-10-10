@@ -53,7 +53,7 @@ const Product = ({ product }) => {
           image_product={image_product}/>
 
       <div className='image-wrapper'>
-        <div className='image-section'>
+        <div className={`${products_quantity > 0 ? 'image-section' : 'image-agotado'}`}>
           <Link to={`/product/${products_id}`}>
             <img src={image_product[0]} alt={products_name} />
           </Link>
@@ -61,9 +61,13 @@ const Product = ({ product }) => {
         
 
         <div className='icon-wrapper'>
-          <button onClick={handleAddProductToCart} className='icon-button' aria-label="Add to cart">
-            <FontAwesomeIcon icon="circle-plus" className='add-to-cart-icon'/>
-          </button>
+          {products_quantity > 0 ? (
+            <button onClick={handleAddProductToCart} className='icon-button' aria-label="Add to cart">
+              <FontAwesomeIcon icon="circle-plus" className='add-to-cart-icon'/>
+            </button>
+          ) : (
+            <button disabled className='icon-button'><p>AGOTADO</p></button>
+          )}
         </div> 
       </div>
 
@@ -74,7 +78,13 @@ const Product = ({ product }) => {
       </Link>
 
       <div className='product-price'>
-        <p className={`${worksans.className}`}>{products_price} EUR</p>
+      <p className={`${worksans.className}`}>{products_price} EUR</p>
+        {/* {products_quantity > 0 ? (
+          <p className={`${worksans.className}`}>{products_price} EUR</p>
+        ) : (
+          <p className={`${worksans.className}`}>AGOTADO</p>
+        )} */}
+        
       </div>
     </div>
   );

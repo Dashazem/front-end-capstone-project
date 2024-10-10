@@ -137,7 +137,11 @@ const ProductDetails = () => {
             <p>Composición: {products_material}</p>
 
             <div className='btn-wrapper'>
-              <button onClick={handleAddProductToCart} className='btn'>Añadir</button>
+              {products_quantity > 0 ? (
+                <button onClick={handleAddProductToCart} className='btn'>Añadir</button>
+              ) : (
+                <div className='btn-agotado'><button disabled className='btn'>Agotado</button></div>
+              )}
 
               {userRole === 'ADMIN' && (
                 <button onClick={toggleEdit} className='btn'>Editar</button>
@@ -155,95 +159,3 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
-
-/*import React, { Component } from 'react';
-
-export default class ProductDetails extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentId: this.props.match.params.slug,
-      blogItem: {},
-      editMode: false
-    }
-
-    this.handleEditClick = this.handleEditClick.bind(this);
-    this.handleFeaturedImageDelete = this.handleFeaturedImageDelete.bind(this);
-    this.handleUpdateFormSubmission = this.handleUpdateFormSubmission.bind(this);
-  }
-
-  handleUpdateFormSubmission(blog) {
-    this.setState({
-      blogItem: blog,
-      editMode: false
-    })
-  }
-
-  handleFeaturedImageDelete() {
-    this.setState({
-      blogItem: {
-        featured_image_url: ""
-      }
-    });
-  }
-
-  handleEditClick() {
-    if (this.props.loggedInStatus === "LOGGED_IN") {
-      this.setState({ editMode: true });
-    }
-  }
-    
-  getBlogItem() {
-    axios
-      .get(`http://127.0.0.1:5000/products/${this.state.currentId}`)
-      .then(response => {
-        console.log('response', response.data);
-        this.setState({
-          blogItem: response.data.portfolio_blog
-        })
-      })
-      .catch(error => {
-        console.log('getBlogItem error', error);
-      })
-  }
-
-  componentDidMount() {
-    this.getBlogItem();
-  }
-
-  render() {
-    const {
-      title,
-      content,
-      featured_image_url,
-      blog_status
-    } = this.state.blogItem
-
-    const contentManager = () => {
-      if (this.state.editMode) {
-        return <BlogForm 
-                handleUpdateFormSubmission={this.handleUpdateFormSubmission} 
-                handleFeaturedImageDelete = {this.handleFeaturedImageDelete} 
-                editMode={this.state.editMode} 
-                blog={this.state.blogItem} />;
-      } else {
-        return (
-          <div className='content-container'>
-            <h1 onClick={this.handleEditClick}>{title}</h1>
-
-            <BlogFeaturedImage img={featured_image_url} />
-
-            <div className='content'>{ReactHtmlParser(content)}</div>
-        </div>
-        );
-      }
-    }
-
-    return (
-      <div className='blog-container'>
-        {contentManager()}
-      </div>
-    );
-  }
-}*/

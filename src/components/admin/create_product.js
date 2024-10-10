@@ -48,15 +48,15 @@ export default class CreateProduct extends Component {
 
   handleImageDrop = (file, dropzone) => {
     this.setState(prevState => {
-      const newImages = [...prevState.image_product]; // Make a copy of the current images
+      const newImages = [...prevState.image_product]; 
   
-      // Replace the appropriate index with the new file
+      
       if (dropzone === 'main') {
-        newImages[0] = file; // Main image at index 0
+        newImages[0] = file; 
       } else if (dropzone === 'firstAdditional') {
-        newImages[1] = file; // First additional image at index 1
+        newImages[1] = file; 
       } else if (dropzone === 'secondAdditional') {
-        newImages[2] = file; // Second additional image at index 2
+        newImages[2] = file; 
       }
   
       return { image_product: newImages, successMessage: "" };

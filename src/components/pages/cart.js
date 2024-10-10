@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { worksans } from '../../app/fonts/fonts';
@@ -8,9 +8,17 @@ import { increaseItemQuantity, decreaseItemQuantity } from '../../store/reducers
 const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity, auth }) => {
   const navigate = useNavigate(); 
   const [message, setMessage] = useState(''); 
+  const [errorMessage, setErrorMessage] = useState(''); 
   const totalAmount = useSelector(state => state.cart.totalAmount);
+  const incrementMessage = useSelector(state => state.cart.errorMessage);
   
-
+  useEffect(() => {
+    if (incrementMessage) {
+      setErrorMessage(incrementMessage);
+      const timer = setTimeout(() => setErrorMessage(''), 2000); // Clear message after 2 seconds
+      return () => clearTimeout(timer); // Cleanup timer
+    }
+  }, [incrementMessage]);
   /*const getTotalAmount = () => {
     const total = items.reduce((total, item) => {
       return total + (item.price * item.quantity);
@@ -90,7 +98,12 @@ const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity, auth }) => {
                       <FontAwesomeIcon icon="circle-plus" className='cart-icon'/>
                     </button>
                   </div>
+                
                 </div>
+
+                <div className="error-message">
+                    {errorMessage && <p>{errorMessage}</p>}
+                  </div>
               </div>
             </div>
           ))}
