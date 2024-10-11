@@ -1,23 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const loadCartFromLocalStorage = () => {
+  const savedCart = localStorage.getItem('cart');
+  return savedCart ? JSON.parse(savedCart) : { items: [], totalAmount: 0 };
+};
+
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: { items: [], totalAmount: 0, isOpen: false },
+  initialState: loadCartFromLocalStorage(),
   reducers: {
     addToCart(state, action) {
-      const price = parseFloat(action.payload.price); // Переконатися, що price є числом
+      const price = parseFloat(action.payload.price);
       const existingItem = state.items.find(item => item.id === action.payload.id);
       if (existingItem) {
         const newQuantity = Math.min(existingItem.quantity + 1, existingItem.max_quantity);
         if (newQuantity > existingItem.quantity) {
-          state.totalAmount = parseFloat((state.totalAmount + price).toFixed(2)); // Оновлюємо totalAmount
+          state.totalAmount = parseFloat((state.totalAmount + price).toFixed(2));
           existingItem.quantity = newQuantity;
         }
       } else {
         state.items.push({ ...action.payload, quantity: 1 });
-        state.totalAmount = parseFloat((state.totalAmount + price).toFixed(2)); // Оновлюємо totalAmount
-        state.isOpen = true;
+        state.totalAmount = parseFloat((state.totalAmount + price).toFixed(2));
       }
+      localStorage.setItem('cart', JSON.stringify(state)); // Зберігання в localStorage
     },
     increaseItemQuantity(state, action) {
       const itemToIncrease = state.items.find(item => item.id === action.payload.id);
@@ -29,34 +34,33 @@ const cartSlice = createSlice({
           const price = parseFloat(itemToIncrease.price);
           state.totalAmount = parseFloat((state.totalAmount + price).toFixed(2));
           itemToIncrease.quantity = newQuantity;
-          state.errorMessage = ''; // Clear error message
-        } else {
-          state.errorMessage = "Stock insuficiente"; // Set error message if max is exceeded
+          localStorage.setItem('cart', JSON.stringify(state)); // Зберігання в localStorage
         }
       }
     },
     decreaseItemQuantity(state, action) {
       const itemToDecrease = state.items.find(item => item.id === action.payload.id);
       if (itemToDecrease) {
-        const price = parseFloat(itemToDecrease.price); // Переконатися, що price є числом
+        const price = parseFloat(itemToDecrease.price);
         if (itemToDecrease.quantity > 1) {
-          state.totalAmount = parseFloat((state.totalAmount - price).toFixed(2)); // Оновлюємо totalAmount
+          state.totalAmount = parseFloat((state.totalAmount - price).toFixed(2));
           itemToDecrease.quantity -= 1;
         } else {
-          state.totalAmount = parseFloat((state.totalAmount - price).toFixed(2)); // Оновлюємо totalAmount
+          state.totalAmount = parseFloat((state.totalAmount - price).toFixed(2));
           state.items = state.items.filter(item => item.id !== action.payload.id);
         }
+        localStorage.setItem('cart', JSON.stringify(state)); // Зберігання в localStorage
       }
     },
     clearCart(state) {
       state.items = [];
-      state.totalAmount = 0; // Скидаємо totalAmount
+      state.totalAmount = 0;
+      localStorage.removeItem('cart'); // Видалення з localStorage
     },
   },
 });
 
 export const { addToCart, clearCart, increaseItemQuantity, decreaseItemQuantity } = cartSlice.actions;
 export default cartSlice.reducer;
-
 
 

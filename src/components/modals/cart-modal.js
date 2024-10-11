@@ -1,7 +1,8 @@
+'use client';
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
-import { NavLink } from 'react-router-dom';
-import { worksans } from '../../app/fonts/fonts';
+import Link from 'next/link';
+import { worksans } from '../../fonts/fonts';
 
 ReactModal.setAppElement('body');
 
@@ -83,7 +84,7 @@ export default class ShoppingCartModal extends Component {
             </div>
 
             <div className='cart-modal-link'>
-              <NavLink to="/cart" onClick={this.handleLinkClick}><p>VER CESTA</p></NavLink>
+              <Link href="/cart" onClick={this.handleLinkClick}><p>VER CESTA</p></Link>
             </div>
           </div>
         </ReactModal>

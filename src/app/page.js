@@ -1,91 +1,97 @@
-'use client';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import NavBar from '../components/navigation/navbar';
-import Home from '../components/pages/home';
-import Login from '../components/pages/login';
-import ShoppingCart from '../components/pages/cart';
-import Products from '../components/products/products';
-import Icons from '../components/helpers/icons';
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
-import { Provider } from 'react-redux';
-import store from '../store/store';
+import juguetes from '../../static/assets/images/home-page/juguetes.jpg';
+import mordedores from '../../static/assets/images/home-page/mordedores.jpg';
+import moviles from '../../static/assets/images/home-page/moviles.jpg';
+import patucos from '../../static/assets/images/home-page/patucos.jpg';
 
 
-import Footer from '../components/navigation/footer';
-import ProductDetails from '../components/products/product-details';
-import CreateAccount from "../components/pages/create-account";
-import User from "../components/pages/user";
-import Admin from "../components/pages/admin";
-import UserProfile from "../components/user/user-profile";
-import UserOrders from "../components/user/user-orders";
-import UserAddresses from "../components/user/user-addresses";
-import UserAddAddress from "../components/user/user-add-address";
-import UserEditAddress from "../components/user/user-edit-address";
-import AdminOrders from "../components/admin/admin-orders";
-import AdminCustomers from "../components/admin/admin-customers";
-import AdminProfile from "../components/admin/admin-profile";
-import CreateAdmin from "../components/admin/create-admin";
-import CreateProduct from "../components/admin/create_product";
-import DeleteAccount from "../components/pages/delete-account";
-import OrderAddress from '../components/order/order-address';
-import OrderPayment from "../components/order/order-payment";
-import OrderSuccessPage from "../components/order/order-success-page";
-
-
-
-export default function App() {
-  Icons();
-  return (
-    <Provider store={store}>
-      <div>
-        <Router>
-          <div>
-            <NavBar />
-
-            <Routes>
-              <Route exact path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/cart" element={<ShoppingCart />} />
-              <Route exact path="/categories/:slug" element={<Products />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/product/:product_id" element={<ProductDetails />} />
-              <Route path="/register" element={<CreateAccount />} />
-              {/* <Route path="/admin" element={
-                <ProtectedRoute role="ADMIN">
-                    <AdminComponent />
-                </ProtectedRoute>
-              } />
-              <Route path="/user" element={
-                <ProtectedRoute role="USER">
-                    <UserComponent />
-                </ProtectedRoute>
-              } /> */}
-              <Route path="/user" element={<User />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/user/profile" element={<UserProfile />} />
-              <Route path="/user/orders" element={<UserOrders />} />
-              <Route path="/user/addresses" element={<UserAddresses />} />
-              <Route path="/add-address" element={<UserAddAddress />} />
-              <Route path="/edit-address/:addressId" element={<UserEditAddress />} />
-
-              <Route path="/admin/profile" element={<AdminProfile />} />
-              <Route path="/admin/orders" element={<AdminOrders />} />
-              <Route path="/admin/customers" element={<AdminCustomers />} />
-              <Route path="/admin/create-admin" element={<CreateAdmin />} />
-              <Route path="/admin/create-product" element={<CreateProduct />} />
-              <Route path="/delete-account" element={<DeleteAccount />} />
-
-              <Route path="/order-address" element={<OrderAddress />} />
-              <Route path="/order-payment" element={<OrderPayment />} />
-              <Route path="/order-success" element={<OrderSuccessPage />} />
-
-
-            </Routes>
-
-            <Footer />
+export default function Home() {
+  
+    return (
+      <div className='category-wrapper'>
+        
+        <div className='category-container'>
+          <div className='category-image'>
+            <Link href="/products/juguetes">
+                <Image
+                  src={juguetes}
+                  alt="Juguetes image"
+                  fill
+                  objectFit="cover"
+                  priority
+                />
+            </Link>
           </div>
-        </Router>
-      </div>
-    </Provider>
-  );
+          
+          <div className='category-right-text'>
+            <p>Descubre nuestra colección de<br/><Link href="/categories/juguetes">JUGUETES AMIGURUMI</Link></p>
+          </div>
+        </div>
+        
+        <div className='category-container'>
+          <div className='category-left-text'>
+            <p>¡No te pierdas nuestros<br/><Link href="/categories/mordedores">MORDEDORES</Link> !</p>
+          </div>
+          
+          <div className='category-image'>
+            <Link href="/products/mordedores">
+                <Image
+                  src={mordedores}
+                  alt="Mordedores image"
+                  fill
+                  objectFit="cover"
+                  priority
+                />
+            </Link>
+          </div>
+        </div>
+
+        <div className='category-container'>
+          <div className='category-image'>
+            <Link href="/products/patucos">
+                <Image
+                  src={patucos}
+                  alt="Patucos image"
+                  fill
+                  objectFit="cover"
+                  priority
+                />
+            </Link>
+          </div>
+
+          <div className='category-right-text'>
+            <p>Mantén los pies de tu bebé cálidos y cómodos con nuestros<br /><Link href="/categories/patucos">PATUCOS</Link></p>
+          </div>
+        </div>
+
+        <div className='category-container'>
+          <div className='category-left-text'>
+            <p>Añade un toque de magia a la habitación de tu bebé con nuestros<br/><Link href="/categories/moviles">MÓVILES DE CUNA</Link></p>
+          </div>
+
+          <div className='category-image'>
+            <Link href="/products/moviles">
+              <Image
+                src={moviles}
+                alt="Moviles image"
+                fill
+                objectFit="cover"
+                priority
+              />
+            </Link>
+          </div>
+        </div>
+
+        <div class="ver-todo-section">
+          <div class="heading">
+            <Link href="/products">Ver Todo</Link>
+          </div>
+        </div>
+
+      </div>  
+    );
+  
 }

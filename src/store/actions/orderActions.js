@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const createOrder = (orderData) => {
   return (dispatch) => {
-    return axios.post('http://127.0.0.1:5000/orders', orderData)
+    return axios.post('http://127.0.0.1:5000/orders', orderData, { withCredentials: true })
       .then((response) => {
         console.log(response.data.message);
         // обробити успішне замовлення,напр очистити кошик

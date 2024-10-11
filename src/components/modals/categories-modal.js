@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
 
 ReactModal.setAppElement('body');
 
@@ -55,23 +55,23 @@ export default class CategoriesModal extends Component {
         <ReactModal style={this.customStyles} onRequestClose={() => {this.props.handleCloseAllCategories();}} isOpen={this.props.modalIsOpen}>
           <div className='category-links'>
             <div className='category-link'>
-              <NavLink to="/categories/juguetes" onClick={this.handleLinkClick}>JUGUETES AMIGURUMI</NavLink><br/>
+              <Link href="/products/juguetes" onClick={this.handleLinkClick}>JUGUETES AMIGURUMI</Link><br/>
             </div>
             
             <div className='category-link'>
-              <NavLink to="/categories/mordedores" onClick={this.handleLinkClick}>MORDEDORES</NavLink><br/>
+              <Link href="/products/mordedores" onClick={this.handleLinkClick}>MORDEDORES</Link><br/>
             </div>
 
             <div className='category-link'>
-              <NavLink to="/categories/patucos" onClick={this.handleLinkClick}>PATUCOS</NavLink><br/>
+              <Link href="/products/patucos" onClick={this.handleLinkClick}>PATUCOS</Link><br/>
             </div>
             
             <div className='category-link'>
-              <NavLink to="/categories/moviles" onClick={this.handleLinkClick}>MÓVILES DE CUNA</NavLink><br/>
+              <Link href="/products/moviles" onClick={this.handleLinkClick}>MÓVILES DE CUNA</Link><br/>
             </div>
             
             <div className='category-link'>
-              <NavLink to="/products" onClick={this.handleLinkClick}>VER TODO</NavLink><br/>
+              <Link href="/products" onClick={this.handleLinkClick}>VER TODO</Link><br/>
             </div>
           </div>
         </ReactModal>

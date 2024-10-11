@@ -1,10 +1,11 @@
+'use client';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from 'next/link';
+import { FaCirclePlus } from "react-icons/fa6";
 import { useDispatch } from 'react-redux'; 
 import { addToCart } from '../../store/reducers/cartReducer';
 
-import { worksans } from '../../app/fonts/fonts';
+import { worksans } from '../../fonts/fonts';
 
 import ShoppingCartModal from '../modals/cart-modal';
 
@@ -54,7 +55,7 @@ const Product = ({ product }) => {
 
       <div className='image-wrapper'>
         <div className={`${products_quantity > 0 ? 'image-section' : 'image-agotado'}`}>
-          <Link to={`/product/${products_id}`}>
+          <Link href={`/product/${products_id}`}>
             <img src={image_product[0]} alt={products_name} />
           </Link>
         </div>
@@ -63,7 +64,7 @@ const Product = ({ product }) => {
         <div className='icon-wrapper'>
           {products_quantity > 0 ? (
             <button onClick={handleAddProductToCart} className='icon-button' aria-label="Add to cart">
-              <FontAwesomeIcon icon="circle-plus" className='add-to-cart-icon'/>
+              <FaCirclePlus className='add-to-cart-icon'/>
             </button>
           ) : (
             <button disabled className='icon-button'><p>AGOTADO</p></button>
@@ -71,7 +72,7 @@ const Product = ({ product }) => {
         </div> 
       </div>
 
-      <Link to={`/product/${products_id}`}>
+      <Link href={`/product/${products_id}`}>
         <div className='product-name'>
           <p>{products_name}</p>
         </div>

@@ -1,0 +1,36 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+@import "./test.scss";
+@import "./navbar.scss";
+@import "./home.scss";
+@import "./categories-modal.scss";
+@import "./cart-modal.scss";
+@import "./footer.scss";
+@import "./product-item.scss";
+@import "./product-details.scss";
+@import "./cart.scss";
+@import "./login.scss";
+@import "./create-account.scss";
+@import "./account.scss";
+@import "./product-edit.scss";
+@import "./spinner.scss";
+
+body {
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: $deep-grey;
+}
+
+h1, h2, h3, h4 {
+  color: $deep-grey;
+}
+
+p {
+  color: $dark-grey;
+}
+
+
+

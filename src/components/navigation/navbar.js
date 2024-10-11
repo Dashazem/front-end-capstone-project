@@ -1,17 +1,30 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux'; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { NavLink } from 'react-router-dom';
+'use client';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'; 
+import Link from 'next/link';
 import Image from 'next/image';
 import logo from '../../../static/assets/images/logo/logo-shop.png';
 import CategoriesModal from '../modals/categories-modal';
+import { FaBars, FaUser, FaUserTie, FaBagShopping } from "react-icons/fa6";
+import { loginSuccess, setLoading } from "../../store/reducers/authReducer";
+
 
 const NavBar = () => {
   const userEmail = useSelector(state => state.auth.email); 
   const userRole = useSelector(state => state.auth.role);
   const userName = useSelector(state => state.auth.first_name);
+  const dispatch = useDispatch();
   const [categoriesModalIsOpen, setCategoriesModalIsOpen] = useState(false);
-
+  
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      dispatch(loginSuccess(parsedUser));
+    }
+    dispatch(setLoading(false)); // Зупиніть завантаження після перевірки
+  }, [dispatch]);
+  
   const handleOpenAllCategoriesClick = () => {
     setCategoriesModalIsOpen(true);
   };
@@ -28,12 +41,12 @@ const NavBar = () => {
           modalIsOpen={categoriesModalIsOpen} 
         /> 
         <a onClick={handleOpenAllCategoriesClick}>
-          <FontAwesomeIcon icon="fa-bars" className='nav-icon' />
+          <FaBars className='nav-icon' />
         </a>
       </div>
 
       <div className='central-column'>
-        <NavLink to="/">
+        <Link href="/">
           <Image
             src={logo}
             alt="Logo"
@@ -41,7 +54,7 @@ const NavBar = () => {
             objectFit="cover"
             priority
           />
-        </NavLink>
+        </Link>
       </div>
 
       <div className='right-side'>
@@ -49,36 +62,36 @@ const NavBar = () => {
         {userEmail ? (
           userRole === "ADMIN" ? (
             <div className='icon-wrapper'>
-              <NavLink to="/admin">
-                <FontAwesomeIcon icon="fa-user-tie" className='nav-icon' />
-              </NavLink>
+              <Link href="/admin">
+                <FaUserTie className='nav-icon'/>
+              </Link>
               <div className='user-name'>{userName}</div>
             </div>
           ) : userRole === "USER" ? (
             <div className='icon-wrapper'>
-              <NavLink to="/user">
-                <FontAwesomeIcon icon="fa-user" className='nav-icon' />
-              </NavLink>
+              <Link href="/user">
+                <FaUser className='nav-icon'/>
+              </Link>
               <div className='user-name'>{userName}</div>
             </div>
           ) : (
             <div>
-              <NavLink to="/login">
-                <FontAwesomeIcon icon="fa-user" className='nav-icon' />
-              </NavLink>
+              <Link href="/login">
+                <FaUser className='nav-icon'/>
+              </Link>
             </div>
         )) : (
           <div>
-            <NavLink to="/login">
-              <FontAwesomeIcon icon="fa-user" className='nav-icon' />
-            </NavLink>
+            <Link href="/login">
+              <FaUser className='nav-icon'/>
+            </Link>
           </div>
         )}
 
         <div>
-          <NavLink to="/cart">
-            <FontAwesomeIcon icon="fa-bag-shopping" className='nav-icon' />
-          </NavLink>
+          <Link href="/cart">
+            <FaBagShopping className='nav-icon' />
+          </Link>
         </div>
       </div>
     </div>

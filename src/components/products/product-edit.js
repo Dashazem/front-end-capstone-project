@@ -1,10 +1,11 @@
+'use client';
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { useDropzone } from 'react-dropzone';
 
 const EditProduct = ({ product }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [formData, setFormData] = useState({
     products_name: '',
     products_category: '',
@@ -21,7 +22,7 @@ const EditProduct = ({ product }) => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const response = await axios.get(`http://127.0.0.1:5000/product/${product.products_id}`);
+      const response = await axios.get(`http://127.0.0.1:5000/product/${product.products_id}`, { withCredentials: true });
       const images = response.data.product.image_product || [];
       const imageMapping = {
         main_image: images[0] || '',
@@ -79,10 +80,10 @@ const EditProduct = ({ product }) => {
     });
 
     try {
-      await axios.patch(`http://127.0.0.1:5000/products/${product.products_id}`, formDataToSend);
+      await axios.patch(`http://127.0.0.1:5000/products/${product.products_id}`, formDataToSend, { withCredentials: true });
       setMessage('Producto editado correctamente');
       setTimeout(() => {
-        navigate(`/categories/${product.products_category}`);
+        router.push(`/categories/${product.products_category}`);
       }, 2000);
       
     } catch (error) {
@@ -93,10 +94,10 @@ const EditProduct = ({ product }) => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://127.0.0.1:5000/products/${product.products_id}`);
+      await axios.delete(`http://127.0.0.1:5000/products/${product.products_id}`, { withCredentials: true });
       setMessage('Producto eliminado correctamente');
       setTimeout(() => {
-        navigate(`/categories/${product.products_category}`);
+        router.push(`/categories/${product.products_category}`);
       }, 2000);
    
     } catch (error) {
