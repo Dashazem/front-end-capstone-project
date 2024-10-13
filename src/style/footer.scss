@@ -1,6 +1,14 @@
 .footer-wrapper {
-  display: flex;
-  background-color: $pastel-dark-green;
-  height: 170px;
+  @include category-links();
+  .category-links {
+    justify-content: center;
+    align-items: center;
+    background-color: $pastel-dark-green;
+    height: 170px;
   
+    .category-link {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
 }

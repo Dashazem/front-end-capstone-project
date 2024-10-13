@@ -12,6 +12,7 @@ const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity, auth }) => {
   const [errorMessage, setErrorMessage] = useState(''); 
   const totalAmount = useSelector(state => state.cart.totalAmount);
   const incrementMessage = useSelector(state => state.cart.errorMessage);
+
   
   useEffect(() => {
     if (incrementMessage) {
@@ -20,6 +21,7 @@ const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity, auth }) => {
       return () => clearTimeout(timer); 
     }
   }, [incrementMessage]);
+  
 
   useEffect(() => {
     const savedCart = localStorage.getItem('cart');
@@ -60,7 +62,14 @@ const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity, auth }) => {
         </div>
       ) : (
         <div className='full-cart-wrapper'>
-          <h2>TU CESTA ({getTotalQuantity()})</h2>
+          <div className='header-wrapper'>
+            <h2>TU CESTA ({getTotalQuantity()})</h2>
+
+            <div className="error-message">
+              {errorMessage && <p>{errorMessage}</p>}
+            </div>
+          </div>
+          
 
           {items.map(item => (
             <div key={item.id} className='cart-product-container'>
@@ -98,9 +107,7 @@ const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity, auth }) => {
                 
                 </div>
 
-                <div className="error-message">
-                    {errorMessage && <p>{errorMessage}</p>}
-                  </div>
+                
               </div>
             </div>
           ))}

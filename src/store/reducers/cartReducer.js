@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const loadCartFromLocalStorage = () => {
+
   const savedCart = localStorage.getItem('cart');
   return savedCart ? JSON.parse(savedCart) : { items: [], totalAmount: 0 };
 };
@@ -22,7 +23,7 @@ const cartSlice = createSlice({
         state.items.push({ ...action.payload, quantity: 1 });
         state.totalAmount = parseFloat((state.totalAmount + price).toFixed(2));
       }
-      localStorage.setItem('cart', JSON.stringify(state)); // Зберігання в localStorage
+      localStorage.setItem('cart', JSON.stringify(state)); 
     },
     increaseItemQuantity(state, action) {
       const itemToIncrease = state.items.find(item => item.id === action.payload.id);
@@ -34,7 +35,10 @@ const cartSlice = createSlice({
           const price = parseFloat(itemToIncrease.price);
           state.totalAmount = parseFloat((state.totalAmount + price).toFixed(2));
           itemToIncrease.quantity = newQuantity;
-          localStorage.setItem('cart', JSON.stringify(state)); // Зберігання в localStorage
+          state.errorMessage = '';
+          localStorage.setItem('cart', JSON.stringify(state)); 
+        } else {
+          state.errorMessage = "Stock insuficiente"; 
         }
       }
     },
@@ -49,13 +53,13 @@ const cartSlice = createSlice({
           state.totalAmount = parseFloat((state.totalAmount - price).toFixed(2));
           state.items = state.items.filter(item => item.id !== action.payload.id);
         }
-        localStorage.setItem('cart', JSON.stringify(state)); // Зберігання в localStorage
+        localStorage.setItem('cart', JSON.stringify(state)); 
       }
     },
     clearCart(state) {
       state.items = [];
       state.totalAmount = 0;
-      localStorage.removeItem('cart'); // Видалення з localStorage
+      localStorage.removeItem('cart');
     },
   },
 });

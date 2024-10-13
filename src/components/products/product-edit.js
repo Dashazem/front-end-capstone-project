@@ -83,7 +83,7 @@ const EditProduct = ({ product }) => {
       await axios.patch(`http://127.0.0.1:5000/products/${product.products_id}`, formDataToSend, { withCredentials: true });
       setMessage('Producto editado correctamente');
       setTimeout(() => {
-        router.push(`/categories/${product.products_category}`);
+        router.push(`/products/${product.products_category.toLowerCase()}`);
       }, 2000);
       
     } catch (error) {
@@ -97,7 +97,7 @@ const EditProduct = ({ product }) => {
       await axios.delete(`http://127.0.0.1:5000/products/${product.products_id}`, { withCredentials: true });
       setMessage('Producto eliminado correctamente');
       setTimeout(() => {
-        router.push(`/categories/${product.products_category}`);
+        router.push(`/products/${product.products_category.toLowerCase()}`);
       }, 2000);
    
     } catch (error) {

@@ -9,21 +9,44 @@ const UserOrders = () => {
   const [orders, setOrders] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [totalOrders, setTotalOrders] = useState(0);
+  const [loadingMore, setLoadingMore] = useState(false);
 
   useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/orders/user/${userId}`, { withCredentials: true });
-        setOrders(response.data);
-      } catch (error) {
-        console.error('Error fetching orders:', error);
-      } finally {
-        setLoading(false); 
-      }
-    };
-
-    fetchOrders();
+    if (userId) {
+      fetchOrders(1); 
+    }
   }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
+      fetchOrders(page); 
+    }
+  }, [page, userId]);
+
+  const fetchOrders = async (currentPage) => {
+    setLoadingMore(currentPage > 1);
+    setLoading(currentPage === 1);
+
+    try {
+      const response = await axios.get(`http://localhost:5000/orders/user/${userId}?page=${currentPage}`, { withCredentials: true });
+      
+      if (response.data.orders.length > 0) {
+        setOrders(prevOrders => {
+          const existingIds = new Set(prevOrders.map(order => order.order_number));
+          const newOrders = response.data.orders.filter(order => !existingIds.has(order.order_number));
+          return [...prevOrders, ...newOrders];
+        });
+      }
+      setTotalOrders(response.data.total);
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+    } finally {
+      setLoadingMore(false);
+      setLoading(false);
+    }
+  };
 
   const handleOrderClick = async (orderNumber) => {
     try {
@@ -33,6 +56,19 @@ const UserOrders = () => {
       console.error('Error fetching order details:', error);
     }
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 && !loading && !loadingMore) {
+        if (orders.length < totalOrders) {
+          setPage(prevPage => prevPage + 1);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [orders, loading, loadingMore, totalOrders]);
 
   return (
     <div>
@@ -76,8 +112,14 @@ const UserOrders = () => {
         )}
       </div>
       )}
+      {loadingMore && (
+        <div className='spinner'>
+          <ImSpinner3 className="spinner-icon" />
+        </div>
+      )}
     </div>
   );
 };
 
 export default UserOrders;
+

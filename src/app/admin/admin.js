@@ -11,6 +11,8 @@ export default function Admin() {
 
   const handleLogout = () => {
     dispatch(logout());
+    localStorage.removeItem('user');
+    localStorage.removeItem('cart');
     router.push('/'); 
   };
 

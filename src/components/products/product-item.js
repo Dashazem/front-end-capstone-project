@@ -41,7 +41,6 @@ const Product = ({ product }) => {
     };
     dispatch(addToCart(productData));
     setCartModalIsOpen(true);
-    console.log(`Product ID: ${products_id} added to cart`);
   };
 
   return (
