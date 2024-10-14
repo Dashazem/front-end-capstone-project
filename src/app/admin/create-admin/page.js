@@ -1,8 +1,13 @@
 import React from 'react';
 import CreateAdmin from './create-admin';
+import ProtectedRoute from '../../../components/helpers/protected-routes';
 
-const Page = () => {
-  return <CreateAdmin />;
+const CreateAdminPage = () => {
+  return (
+    <ProtectedRoute roles={['ADMIN']}>
+      <CreateAdmin />
+    </ProtectedRoute>
+  );
 };
 
-export default Page;
+export default CreateAdminPage;

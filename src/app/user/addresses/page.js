@@ -1,8 +1,13 @@
 import React from 'react';
 import UserAddresses from './user-addresses';
+import ProtectedRoute from '../../../components/helpers/protected-routes';
 
-const Page = () => {
-  return <UserAddresses />;
+const UserAddressesPage = () => {
+  return (
+    <ProtectedRoute roles={['USER']}>
+      <UserAddresses />
+    </ProtectedRoute>
+  );
 };
 
-export default Page;
+export default UserAddressesPage;

@@ -1,11 +1,12 @@
 @import "./variables.scss";
 @import "./mixins.scss";
+@import "./common.scss";
 @import "./test.scss";
 @import "./navbar.scss";
+@import "./footer.scss";
 @import "./home.scss";
 @import "./categories-modal.scss";
 @import "./cart-modal.scss";
-@import "./footer.scss";
 @import "./product-item.scss";
 @import "./product-details.scss";
 @import "./cart.scss";
@@ -28,32 +29,6 @@
 @import "./order-succes.scss";
 @import "./delete-account.scss";
 
-body {
-  margin: 0px;
-}
-
-a {
-  text-decoration: none;
-  color: $deep-grey;
-}
-
-h1, h2, h3, h4 {
-  color: $deep-grey;
-}
-
-p {
-  color: $dark-grey;
-}
-
-.success-message p {
-  color: $dark-blue;
-  font-size: 0.8em;
-}
-
-.error-message p {
-  color: $pastel-dark-pink;
-  font-size: 0.8em;
-}
 
 
 

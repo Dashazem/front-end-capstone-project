@@ -1,8 +1,8 @@
 import React from 'react';
 import ProductDetails from './product-details'; 
 
-const Page = () => {
+const ProductDetailsPage = () => {
   return <ProductDetails />;
 };
 
-export default Page;
+export default ProductDetailsPage;

@@ -1,8 +1,13 @@
 import React from 'react';
-import UserProfile from './user-profile'; 
+import UserProfile from './user-profile';
+import ProtectedRoute from '../../../components/helpers/protected-routes'; 
 
-const Page = () => {
-  return <UserProfile />;
+const UserProfilePage = () => {
+  return (
+    <ProtectedRoute roles={['USER']}>
+      <UserProfile />
+    </ProtectedRoute>
+  );
 };
 
-export default Page;
+export default UserProfilePage;

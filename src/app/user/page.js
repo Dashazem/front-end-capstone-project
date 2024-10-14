@@ -1,8 +1,13 @@
 import React from 'react';
 import User from './user'; 
+import ProtectedRoute from '../../components/helpers/protected-routes';
 
-const Page = () => {
-  return <User />;
+const UserPage = () => {
+  return (
+    <ProtectedRoute roles={['USER']}>
+      <User />
+    </ProtectedRoute>
+  );
 };
 
-export default Page;
+export default UserPage;

@@ -1,8 +1,8 @@
 import React from 'react';
 import CreateAccount from './create-account'; 
 
-const Page = () => {
+const CreateAccountPage = () => {
   return <CreateAccount />;
 };
 
-export default Page;
+export default CreateAccountPage;

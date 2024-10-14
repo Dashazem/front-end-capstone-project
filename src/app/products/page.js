@@ -1,8 +1,8 @@
 import React from 'react';
 import AllProducts from './products'; 
 
-const Page = () => {
+const AllProductsPage = () => {
   return <AllProducts />;
 };
 
-export default Page;
+export default AllProductsPage;

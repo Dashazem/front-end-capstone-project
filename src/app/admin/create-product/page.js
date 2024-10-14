@@ -1,8 +1,13 @@
 import React from 'react';
 import CreateProduct from './create_product';
+import ProtectedRoute from '../../../components/helpers/protected-routes';
 
-const Page = () => {
-  return <CreateProduct />;
+const CreateProductPage = () => {
+  return (
+    <ProtectedRoute roles={['ADMIN']}>
+      <CreateProduct />
+    </ProtectedRoute>
+  );
 };
 
-export default Page;
+export default CreateProductPage;

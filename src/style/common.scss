@@ -1,0 +1,26 @@
+body {
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: $deep-grey;
+}
+
+h1, h2, h3, h4 {
+  color: $deep-grey;
+}
+
+p {
+  color: $dark-grey;
+}
+
+.success-message p {
+  color: $dark-blue;
+  font-size: 0.8em;
+}
+
+.error-message p {
+  color: $pastel-dark-pink;
+  font-size: 0.8em;
+}

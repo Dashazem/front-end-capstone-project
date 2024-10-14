@@ -1,8 +1,13 @@
 import React from 'react';
 import UserEditAddress from './user-edit-address';
+import ProtectedRoute from '../../../../../components/helpers/protected-routes';
 
-const Page = () => {
-  return <UserEditAddress />;
+const UserEditAddressPage = () => {
+  return (
+    <ProtectedRoute roles={['USER']}>
+      <UserEditAddress />
+    </ProtectedRoute>
+  );
 };
 
-export default Page;
+export default UserEditAddressPage;

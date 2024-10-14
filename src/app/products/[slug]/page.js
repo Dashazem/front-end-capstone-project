@@ -1,8 +1,8 @@
 import React from 'react';
 import ProductsByCategory from './categories'; 
 
-const Page = () => {
+const ProductsByCategoryPage = () => {
   return <ProductsByCategory />;
 };
 
-export default Page;
+export default ProductsByCategoryPage;

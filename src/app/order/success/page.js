@@ -1,8 +1,13 @@
 import React from 'react';
 import OrderSuccessPage from './order-success-page'; 
+import ProtectedRoute from '../../../components/helpers/protected-routes';
 
-const Page = () => {
-  return <OrderSuccessPage />;
+const OrderSuccessPagePage = () => {
+  return (
+    <ProtectedRoute roles={['USER']}>
+      <OrderSuccessPage />
+    </ProtectedRoute>
+  );
 };
 
-export default Page;
+export default OrderSuccessPagePage;
