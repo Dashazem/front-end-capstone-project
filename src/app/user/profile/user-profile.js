@@ -1,11 +1,11 @@
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import PhoneInput from 'react-phone-input-2';
 
+import 'react-phone-input-2/lib/style.css';
 import { loginSuccess } from '../../../store/reducers/authReducer';
 
 const UserProfile = () => {
@@ -141,6 +141,7 @@ const UserProfile = () => {
               setPasswordErrorEmailChangeMessage('')}
             }
           />
+
           <input
             type="email"
             placeholder="Nuevo email"
@@ -162,7 +163,6 @@ const UserProfile = () => {
           <h2>CAMBIAR NÚMERO DE TELÉFONO</h2>
         </div>
         
-
         <div className='change-phone-number-inputs'>
           <div className="phone-input">
             <label><p>Teléfono*</p></label>
@@ -197,6 +197,7 @@ const UserProfile = () => {
               setPasswordErrorPasswordChangeMessage('');
             }}
           />
+          
           <input 
             type="password" 
             placeholder="Nueva contraseña" 

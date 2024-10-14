@@ -9,20 +9,19 @@ import patucos from '../../static/assets/images/home-page/patucos.jpg';
 
 
 export default function Home() {
-  
     return (
       <div className='category-wrapper'>
         
         <div className='category-container'>
           <div className='category-image'>
             <Link href="/products/juguetes">
-                <Image
-                  src={juguetes}
-                  alt="Juguetes image"
-                  fill
-                  objectFit="cover"
-                  priority
-                />
+              <Image
+                src={juguetes}
+                alt="Juguetes image"
+                fill
+                sizes="(max-width: 600px) 100vw, 50vw"
+                priority
+              />
             </Link>
           </div>
           
@@ -42,7 +41,7 @@ export default function Home() {
                   src={mordedores}
                   alt="Mordedores image"
                   fill
-                  objectFit="cover"
+                  sizes="(max-width: 600px) 100vw, 50vw"
                   priority
                 />
             </Link>
@@ -56,7 +55,7 @@ export default function Home() {
                   src={patucos}
                   alt="Patucos image"
                   fill
-                  objectFit="cover"
+                  sizes="(max-width: 600px) 100vw, 50vw"
                   priority
                 />
             </Link>
@@ -78,7 +77,7 @@ export default function Home() {
                 src={moviles}
                 alt="Moviles image"
                 fill
-                objectFit="cover"
+                sizes="(max-width: 600px) 100vw, 50vw"
                 priority
               />
             </Link>

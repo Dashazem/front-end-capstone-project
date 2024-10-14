@@ -11,11 +11,11 @@ const authSlice = createSlice({
       state.first_name = first_name; 
       state.id = id;               
       state.error = null;
-      state.loading = false; // Встановіть loading в false
+      state.loading = false; 
     },
     loginFail(state, action) {
       state.error = action.payload;
-      state.loading = false; // Встановіть loading в false
+      state.loading = false; 
     },
     logout(state) { 
       state.email = null;
@@ -23,14 +23,13 @@ const authSlice = createSlice({
       state.first_name = null;
       state.id = null;
       state.error = null;
-      state.loading = false; // Встановіть loading в false
+      state.loading = false; 
     },
     setLoading(state, action) {
-      state.loading = action.payload; // Додайте action для контролю loading
+      state.loading = action.payload; 
     },
   },
 });
-
 
 export const { loginSuccess, loginFail, logout, setLoading } = authSlice.actions;
 export default authSlice.reducer;

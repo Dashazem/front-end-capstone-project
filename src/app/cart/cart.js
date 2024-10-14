@@ -84,13 +84,10 @@ const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity, auth }) => {
 
               <div className='right-column'>
                 <p className={`${worksans.className}`}>{item.price} EUR</p>
-                
-                {/* {item.price_10} EUR
-                {item.price_20} EUR */}
 
                 <div className='icons'>
                   <div>
-                  <button className='icon-button' onClick={() => decreaseItemQuantity({ id: item.id })}>
+                    <button className='icon-button' onClick={() => decreaseItemQuantity({ id: item.id })}>
                       <FaCircleMinus className='cart-icon'/>
                     </button>
                   </div>
@@ -104,10 +101,7 @@ const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity, auth }) => {
                       <FaCirclePlus className='cart-icon'/>
                     </button>
                   </div>
-                
                 </div>
-
-                
               </div>
             </div>
           ))}

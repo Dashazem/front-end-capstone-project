@@ -43,7 +43,6 @@ export default function Admin() {
       <div className='button-wrapper'>
         <button className='btn' onClick={handleLogout}>CERRAR SESIÓN</button>
       </div>
-      
     </div>
   );
 }

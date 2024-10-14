@@ -172,13 +172,8 @@ const EditProduct = ({ product }) => {
             </div>
           </div>
         </div>
-      
-      
       </form>
-
-      
     </div>
-    
   );
 };
 

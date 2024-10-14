@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ImSpinner3 } from "react-icons/im";
+
 import Product from '../../components/products/product-item';
 
 const AllProducts = () => { 
@@ -29,7 +30,7 @@ const AllProducts = () => {
         setTotalProducts(response.data.total);
       })
       .catch(error => {
-        console.log('getAllProducts error', error);
+        console.error('getAllProducts error', error);
       })
       .finally(() => {
         setLoadingMore(false);

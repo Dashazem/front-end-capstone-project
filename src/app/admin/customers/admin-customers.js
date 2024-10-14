@@ -21,7 +21,7 @@ export default function AdminCustomers() {
     try {
       const response = await axios.get(`http://localhost:5000/admin/customers?page=${currentPage}`, { withCredentials: true });
       setCustomers(prevCustomers => {
-        const existingIds = new Set(prevCustomers.map(customer => customer.email)); // Assuming email is unique
+        const existingIds = new Set(prevCustomers.map(customer => customer.email)); 
         const newCustomers = response.data.customers.filter(customer => !existingIds.has(customer.email));
         return [...prevCustomers, ...newCustomers];
       });
@@ -34,7 +34,7 @@ export default function AdminCustomers() {
     }
   };
   
-
+  
   useEffect(() => {
     const handleScroll = () => {
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 && !loading && !loadingMore) {

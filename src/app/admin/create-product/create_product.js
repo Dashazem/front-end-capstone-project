@@ -92,41 +92,40 @@ export default class CreateProduct extends Component {
   
     const formData = this.buildForm(); 
     axios.post('http://127.0.0.1:5000/products', formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        }
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      }
     }, { withCredentials: true })
     .then(response => {
-        const productId = response.data.products_id; 
-  
-        const imageFormData = this.buildImage();
-        imageFormData.append('products_id', productId); 
-  
-        return axios.post('http://127.0.0.1:5000/upload_image', imageFormData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            }
-        });
+      const productId = response.data.products_id; 
+
+      const imageFormData = this.buildImage();
+      imageFormData.append('products_id', productId); 
+
+      return axios.post('http://127.0.0.1:5000/upload_image', imageFormData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+      });
     })
     .then(response => {
-        console.log('Image response', response);
-        this.setState({
-            products_name: "",
-            products_category: "Juguetes",
-            products_description: "",
-            products_material: "",
-            products_quantity: "",
-            products_price: "",
-            image_product: {},
-            successMessage: "Producto creado con éxito."
-        });
-  
-        [this.mainRef, this.firstAdditionalRef, this.secondAdditionalRef].forEach(ref => {
-          ref.current.dropzone.removeAllFiles();
-        });
+      this.setState({
+          products_name: "",
+          products_category: "Juguetes",
+          products_description: "",
+          products_material: "",
+          products_quantity: "",
+          products_price: "",
+          image_product: {},
+          successMessage: "Producto creado con éxito."
+      });
+
+      [this.mainRef, this.firstAdditionalRef, this.secondAdditionalRef].forEach(ref => {
+        ref.current.dropzone.removeAllFiles();
+      });
     })
     .catch(error => {
-        console.log('Error', error);
+      console.error('Error', error);
     });
   }
 
@@ -244,10 +243,7 @@ export default class CreateProduct extends Component {
               )}
               
             </div> 
-          </div>
-          
-
-          
+          </div>  
         </form>
       </div>
     );

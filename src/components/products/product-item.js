@@ -3,16 +3,14 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { FaCirclePlus } from "react-icons/fa6";
 import { useDispatch } from 'react-redux'; 
+
 import { addToCart } from '../../store/reducers/cartReducer';
-
 import { worksans } from '../../fonts/fonts';
-
 import ShoppingCartModal from '../modals/cart-modal';
 
 const Product = ({ product }) => {
   const [cartModalIsOpen, setCartModalIsOpen] = useState(false);
   const dispatch = useDispatch();
-
 
   const handleCloseCartModal = () => {
     setCartModalIsOpen(false);
@@ -78,13 +76,7 @@ const Product = ({ product }) => {
       </Link>
 
       <div className='product-price'>
-      <p className={`${worksans.className}`}>{products_price} EUR</p>
-        {/* {products_quantity > 0 ? (
-          <p className={`${worksans.className}`}>{products_price} EUR</p>
-        ) : (
-          <p className={`${worksans.className}`}>AGOTADO</p>
-        )} */}
-        
+        <p className={`${worksans.className}`}>{products_price} EUR</p>  
       </div>
     </div>
   );

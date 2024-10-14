@@ -15,7 +15,6 @@ const AdminProfile = () => {
   const [passwordErrorEmailChangeMessage, setPasswordErrorEmailChangeMessage] = useState('');
   const [passwordErrorPasswordChangeMessage, setPasswordErrorPasswordChangeMessage] = useState('');
 
-  
   const dispatch = useDispatch();
   const userId = useSelector(state => state.auth.id);
 
@@ -31,7 +30,6 @@ const AdminProfile = () => {
       return false;
     }
   };
-
 
   const handleEmailUpdate = async () => {
     const isPasswordValid = await verifyCurrentPassword(currentPassword);

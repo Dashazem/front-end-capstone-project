@@ -5,14 +5,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import axios from "axios";
 
-
 import { clearCart } from '../../../store/reducers/cartReducer';
 import { createNewOrder } from '../../../store/reducers/orderReducer';
 
 
 const OrderPayment = () => {
   const totalAmount = useSelector(state => state.cart.totalAmount);
- 
   const auth = useSelector(state => state.auth);
   const cartItems = useSelector(state => state.cart.items);
   const [successMessage, setSuccessMessage] = useState('');
@@ -32,8 +30,6 @@ const OrderPayment = () => {
     return <p>Eliga dirección de entrega antes de seguir</p>; 
   }
   
-
-
   const initialOptions = {
     clientId: "AdaHxKhHDvAyioG2ZLdMwbh3YMsm_3phw4Go2M3-jzp0bF1dOBbJ-Di9v55hLiQl845o4YfftOCCYuV_", 
     currency: "EUR",
@@ -65,7 +61,6 @@ const OrderPayment = () => {
       };
 
       
-  
       axios.post('http://localhost:5000/transactions', transactionData, { withCredentials: true })
         .then(response => {
           const transactionId = response.data.transaction_id;
@@ -109,7 +104,6 @@ const OrderPayment = () => {
         {errorMessage && <div className='error-message'><p>{errorMessage}</p></div>} 
       </div>
     </div>
-    
   );
 };
 

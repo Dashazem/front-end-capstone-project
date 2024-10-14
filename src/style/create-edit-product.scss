@@ -1,7 +1,5 @@
 .create-product-wrapper,
 .edit-product-wrapper {
-  //display: flex;
-  flex-direction: column;
   margin-bottom: 50px;
 
   .create-product-container,
@@ -112,10 +110,6 @@
           margin-right: 20px;
         }
       }
-    }
-  
-    
-  }
- 
-  
+    } 
+  } 
 }

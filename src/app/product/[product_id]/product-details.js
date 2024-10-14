@@ -3,13 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux'; 
 import axios from 'axios';
-import { worksans, playfair_display } from '../../../fonts/fonts';
-import { addToCart } from '../../../store/reducers/cartReducer';
 import { ImSpinner3 } from "react-icons/im";
-
-
-
 import Slider from 'react-slick';
+
+import { worksans } from '../../../fonts/fonts';
+import { addToCart } from '../../../store/reducers/cartReducer';
 import ShoppingCartModal from '../../../components/modals/cart-modal';
 import EditProduct from '../../../components/products/product-edit';
 import "../../../../node_modules/slick-carousel/slick/slick.css"; 
@@ -36,7 +34,7 @@ const ProductDetails = () => {
         setProduct(response.data.product);
 
       }).catch(error => {
-        console.log('getProduct error', error);
+        console.error('getProduct error', error);
       }).finally(() => {
         setLoading(false); 
       });
@@ -88,7 +86,6 @@ const ProductDetails = () => {
 
     dispatch(addToCart(productData));
     setCartModalIsOpen(true); 
-    console.log(`Product ID: ${products_id} added to cart`);
   };
 
     const toggleEdit = () => {
@@ -100,8 +97,6 @@ const ProductDetails = () => {
   }
 
   return (
-    
-
     <div>
       <ShoppingCartModal 
         handleCloseCartModal={handleCloseCartModal} 
@@ -120,7 +115,7 @@ const ProductDetails = () => {
           <div className='product-details'>
             <div className='left-column'>
 
-            {image_product.length > 1 ? (
+              {image_product.length > 1 ? (
                 <Slider {...settings} >
                   {image_product.map((url, index) => (
                     <div key={index} className='slick-slide'>

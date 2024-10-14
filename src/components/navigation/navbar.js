@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'; 
 import Link from 'next/link';
 import Image from 'next/image';
+import { FaBars, FaUser, FaUserTie, FaBagShopping } from "react-icons/fa6";
+
 import logo from '../../../static/assets/images/logo/logo-shop.png';
 import CategoriesModal from '../modals/categories-modal';
-import { FaBars, FaUser, FaUserTie, FaBagShopping } from "react-icons/fa6";
 import { loginSuccess, setLoading } from "../../store/reducers/authReducer";
 
 
@@ -22,7 +23,7 @@ const NavBar = () => {
       const parsedUser = JSON.parse(user);
       dispatch(loginSuccess(parsedUser));
     }
-    dispatch(setLoading(false)); // Зупиніть завантаження після перевірки
+    dispatch(setLoading(false)); 
   }, [dispatch]);
   
   const handleOpenAllCategoriesClick = () => {
@@ -50,8 +51,9 @@ const NavBar = () => {
           <Image
             src={logo}
             alt="Logo"
-            layout="fill"
-            objectFit="cover"
+            fill
+            sizes="(max-width: 600px) 100vw, 50vw"
+            style={{ objectFit: 'cover' }}
             priority
           />
         </Link>

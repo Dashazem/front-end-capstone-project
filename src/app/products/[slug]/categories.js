@@ -33,7 +33,7 @@ const ProductsByCategory = () => {
         setTotalProducts(response.data.total);
       })
       .catch(error => {
-        console.log('getProductsByCategory error', error);
+        console.error('getProductsByCategory error', error);
       })
       .finally(() => {
         setLoadingMore(false);

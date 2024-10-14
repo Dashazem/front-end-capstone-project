@@ -94,8 +94,7 @@ const CreateAccount = () => {
       } else {
         setErrorMessage('Error de red. Inténtalo de nuevo más tarde.');
       }
-    });
-      
+    });     
   };
 
   return (

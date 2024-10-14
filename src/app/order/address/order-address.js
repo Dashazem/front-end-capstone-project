@@ -10,14 +10,12 @@ const AddressSelection = () => {
   const router = useRouter();
   const auth = useSelector(state => state.auth);
   
-  
   useEffect(() => {
     const fetchAddresses = async () => {
       try {
         const response = await fetch(`http://127.0.0.1:5000/customers/${auth.id}/addresses`, { withCredentials: true }); 
         const data = await response.json();
 
-        
         if (Array.isArray(data.addresses)) {
           setAddresses(data.addresses);
         } else {
@@ -64,10 +62,9 @@ const AddressSelection = () => {
                   {address.province}<br/>
                   {address.country}<br/>
                   {address.postal_code}<br/>
-              </p>
-            </label>
-            </div>
-            
+                </p>
+              </label>
+            </div>  
           </div>
         ))
       ) : (

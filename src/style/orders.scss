@@ -31,9 +31,7 @@
             .btn {
               padding: 5px;                
               background-color: white;
-            }             
-            
-            
+            }              
           }
   
           @include button();
@@ -46,17 +44,15 @@
   
     .selected-order {
       position: absolute; 
-      top: 20px; // Позиціонуйте його вгорі
+      top: 20px; 
       right: 50px;
-      width: 35%; // Або інше значення, яке вам підходить
+      width: 35%; 
       padding: 15px;
-      //background-color: $pastel-pink;
       border: 1px solid $dark-grey;
       border-radius: 8px;
       
       h3 {
         margin-bottom: 10px;
-        //color: $dark-blue;
       }
   
       p {
@@ -66,7 +62,6 @@
   
       h4 {
         margin-top: 10px;
-        //color: $dark-blue;
       }
   
       ul {
@@ -82,6 +77,5 @@
         }
       }
     }
-  }
-  
+  } 
 }

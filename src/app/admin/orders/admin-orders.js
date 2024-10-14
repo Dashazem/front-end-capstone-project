@@ -93,7 +93,6 @@ const AdminOrders = () => {
                       </button>
                     </div>
                     
-  
                     {!order.seen && (
                       <button className='btn' onClick={() => markAsSeen(order.order_number)}>Marcar como visto</button>
                     )}
@@ -107,10 +106,10 @@ const AdminOrders = () => {
             <div className='selected-order'>
               <h3>Detalles del pedido: {selectedOrder.order_number}</h3>
               {selectedOrder.customer ? (
-                <>
+                <div>
                   <p><strong>Cliente:</strong> {selectedOrder.customer.first_name} {selectedOrder.customer.surname}</p>
                   <p><strong>Email:</strong> {selectedOrder.customer.email}</p>
-                </>
+                </div>
               ) : (
                 <p>Información del cliente no disponible.</p>
               )}

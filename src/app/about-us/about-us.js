@@ -37,8 +37,6 @@ export default function AboutUsPage() {
           creándolos.
         </p>
         </div>
-
-       
       </div>
     </div>
   );

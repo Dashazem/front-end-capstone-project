@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { FaHouse, FaClipboard } from "react-icons/fa6";
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux'; 
 import { login } from '../../store/actions/authActions';
 import { loginSuccess, setLoading } from "../../store/reducers/authReducer"; 
 

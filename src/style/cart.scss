@@ -14,7 +14,6 @@
 }
 
 .full-cart-wrapper {
-  //margin-top: 60px;
   margin-bottom: 60px;
   margin-left: 150px;
 
@@ -63,10 +62,8 @@
         align-items: center; 
         justify-content: space-between; 
         width: 65px;
-        //margin-top: auto;
       
         .quantity-number p {
-          
           font-size: 1.3em;
           display: flex; 
           align-items: center; 
@@ -88,8 +85,6 @@
             color: $dark-blue;
           }
         }
-      
-    
       } 
     }
   }
@@ -102,15 +97,14 @@
     @include button();
 
     .process-order-content  {
-
       .process-order-price h4 {
         font-size: 1.2em;
         margin-bottom: 0px;
       }
+
       .process-order-text p {
         margin: 0px;
       }
     }
-
   }
 }
