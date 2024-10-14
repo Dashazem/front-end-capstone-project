@@ -1,0 +1,66 @@
+.profile-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 150px;
+
+  .change-email-wrapper,
+  .change-phone-number-wrapper,
+  .change-password-wrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .change-email-inputs,
+  .change-phone-number-inputs,
+  .change-password-inputs {
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    @include input-element();
+    input {
+      width: 30%;
+    }
+  }
+
+  .change-email-button,
+  .change-phone-number-button,
+  .change-password-button {
+    @include button();
+  }
+
+
+  .phone-input {
+    @include input-element();
+    margin-bottom: 35px;
+    margin-top: 0px;
+    
+    input {
+      margin-left: 40px;
+      width: 400px;
+    }
+    .flag-dropdown {
+      margin-left: -3px;
+    }
+    
+  }
+  
+  .delete-link {
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+    a h3 {
+      transition: color 0.1s ease-in-out;
+
+      &:hover {
+        color: $dark-blue; 
+      }
+    }
+
+    &:hover a { 
+      color: $dark-blue; 
+    }
+  }
+
+}

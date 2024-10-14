@@ -15,6 +15,18 @@
 @import "./product-edit.scss";
 @import "./spinner.scss";
 @import "./about-us.scss";
+@import "./shipping.scss";
+@import "./contact.scss";
+@import "./profile.scss";
+@import "./create-admin.scss";
+@import "./create-edit-product.scss";
+@import "./orders.scss";
+@import "./user-addresses.scss";
+@import "./admin-customers.scss";
+@import "./order-address.scss";
+@import "./order-payment.scss";
+@import "./order-succes.scss";
+@import "./delete-account.scss";
 
 body {
   margin: 0px;
@@ -31,6 +43,16 @@ h1, h2, h3, h4 {
 
 p {
   color: $dark-grey;
+}
+
+.success-message p {
+  color: $dark-blue;
+  font-size: 0.8em;
+}
+
+.error-message p {
+  color: $pastel-dark-pink;
+  font-size: 0.8em;
 }
 
 

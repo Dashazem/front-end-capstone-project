@@ -52,25 +52,32 @@ export default function UserAddresses() {
           <ImSpinner3 className="spinner-icon" />
         </div>
       ) : (
-        <div>
-          {message && <p>{message}</p>}
+        <div className='user-addresses-wrapper'>
+          {message && <div className='error-message'><p>{message}</p></div>}
           <h2>Direcciones</h2>
-          {addresses.map((address, index) => (
-            <div key={address.id}>
-              <p>
-                {address.street_one} - {address.street_two}<br/>
-                {address.city}<br/>
-                {address.province}<br/>
-                {address.country}<br/>
-                {address.postal_code}<br/>
-              </p>
-              <button onClick={() => handleEditAddress(address.id)}>Editar</button>
-              {index > 0 && (
-                <button onClick={() => handleDeleteAddress(address.id)}>Eliminar</button>
-              )}
-            </div>
-          ))}
-          <button onClick={handleAddAddress}>Añadir Dirección</button>
+
+          <div className='address-containers'>
+            {addresses.map((address, index) => (
+              <div key={address.id} className='address-container'>
+                <p>
+                  <strong>{address.street_one} - {address.street_two}</strong><br/>
+                  {address.city}<br/>
+                  {address.province}<br/>
+                  {address.country}<br/>
+                  {address.postal_code}<br/>
+                </p>
+                <div className='address-container-buttons'>
+                  <button className='btn' onClick={() => handleEditAddress(address.id)}>Editar</button>
+                  {index > 0 && (
+                    <button className='btn' onClick={() => handleDeleteAddress(address.id)}>Eliminar</button>
+                  )}
+                </div>
+                
+              </div>
+            ))}
+          </div>
+          
+          <button className='btn' onClick={handleAddAddress}>Añadir Dirección</button>
         </div>
       )}
     </div>

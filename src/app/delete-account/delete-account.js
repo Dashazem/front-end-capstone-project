@@ -13,7 +13,8 @@ export default function DeleteAccount() {
     role: state.auth.role,
   }));
 
-  const [message, setMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleDeleteAccount = async () => {
     try {
@@ -23,7 +24,7 @@ export default function DeleteAccount() {
       
       await axios.delete(endpoint, { withCredentials: true });
 
-      setMessage('Tu cuenta ha sido eliminada exitosamente.');
+      setSuccessMessage('Tu cuenta ha sido eliminada exitosamente.');
       dispatch(logout());
 
       setTimeout(() => {
@@ -32,18 +33,19 @@ export default function DeleteAccount() {
 
     } catch (error) {
       console.error('Error deleting account:', error);
-      setMessage('Error al eliminar la cuenta.');
+      setErrorMessage('Error al eliminar la cuenta.');
     }
   };
 
   return (
-    <div>
-      <h2>Eliminar tu cuenta</h2>
-      <p>Vas a iniciar el proceso de eliminación de tu cuenta. 
-      Recuerda que: No podrás acceder a tu cuenta en Crochet & Knit.</p>
+    <div className='delete-account-wrapper'>
+      <h2>ELIMINAR TU CUENTA</h2>
+      <p>Vas a iniciar el proceso de eliminación de tu cuenta.
+      Recuerda que: <strong>No podrás acceder a tu cuenta en Crochet & Knit.</strong></p>
       
       <button className='btn' onClick={handleDeleteAccount}>Continuar</button>
-      {message && <div className="notification">{message}</div>}
+      {successMessage && <div className='success-message'><p>{successMessage}</p></div>}
+      {errorMessage && <div className='error-message'><p>{errorMessage}</p></div>}
     </div>
   );
 }

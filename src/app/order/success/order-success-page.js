@@ -16,18 +16,18 @@ export default function OrderSuccessPage() {
   }, []);
 
   return (
-    <div>
-      <div>
-        <h2>{`Su pedido ha sido creado exitosamente con el número ${orders_number}`}</h2>
+    <div className='order-success-wrapper'>
+      <div className='order-success-text'>
+        <h2>{`Su pedido ha sido creado con éxito con el número ${orders_number}`}</h2>
       </div>
       
-      <div>
-        <div>
-        <Link href="/user/orders">VER MIS PEDIDOS</Link>
+      <div className='order-success-links'>
+        <div className='order-success-link'>
+          <Link href="/user/orders">VER MIS PEDIDOS</Link>
         </div>
-
-        <div>
-        <Link href="/">IR A LA PÁGINA PRINCIPAL</Link>
+        
+        <div className='order-success-link'>
+          <Link href="/">IR A LA PÁGINA PRINCIPAL</Link>
         </div>
       </div>
     </div>

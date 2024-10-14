@@ -6,7 +6,8 @@ import { useSelector } from 'react-redux';
 
 export default function UserAddAddress() {
   const router = useRouter();
-  const [message, setMessage] = useState(''); 
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const userId = useSelector(state => state.auth.id);
 
   const [formData, setFormData] = useState({
@@ -33,14 +34,14 @@ export default function UserAddAddress() {
         ...formData,
         customers_id: userId,
       }, { withCredentials: true });
-      setMessage('Dirección agregada correctamente!');
+      setSuccessMessage('Dirección agregada correctamente!');
       setTimeout(() => {
         router.push('/user/addresses');
       }, 2000);
 
     } catch (error) {
       console.error('Error adding address:', error);
-      setMessage('Error al añadir la dirección. Inténtalo de nuevo.');
+      setErrorMessage('Error al añadir la dirección. Inténtalo de nuevo.');
     }
   };
 
@@ -113,7 +114,8 @@ export default function UserAddAddress() {
           />
         </div>
         <button type="submit">Añadir Dirección</button>
-        {message && <p>{message}</p>}
+        {successMessage && <div className='success-message'><p>{successMessage}</p></div>}
+        {errorMessage && <div className='error-message'><p>{errorMessage}</p></div>}
       </form>
     </div>
   );

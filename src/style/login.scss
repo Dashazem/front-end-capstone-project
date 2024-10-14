@@ -14,16 +14,6 @@
     justify-content: space-between; 
     margin: 0 -25px; 
 
-    .success-message p {
-      color: $dark-blue;
-      font-size: 0.8em;
-    }
-
-    .error-message p {
-      color: $pastel-dark-pink;
-      font-size: 0.8em;
-    }
-
     .left-column, .right-column {
       flex: 1; 
       display: flex;

@@ -1,9 +1,9 @@
-.about-us-wrapper {
+.about-wrapper {
   display: grid; 
   grid-template-columns: 1fr 1fr; 
   width: 100%; 
-  max-width: 1000px;
-  height: 500px; 
+  max-width: 1200px;
+  height: 400px; 
   margin: 0 auto;
   padding: 20px;
   padding-bottom: 40px;
@@ -29,10 +29,10 @@
     justify-content: center;
     align-items: center;
     max-width: 600px; 
-    //text-align: left; 
+    padding: 15px;
 
     .about-text p {
-      font-size: 1.2em;
+      font-size: 1.1em;
     }
   }
 }

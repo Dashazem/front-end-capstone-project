@@ -41,31 +41,39 @@ const AddressSelection = () => {
   
 
   return (
-    <div>
+    <div className='order-address-wrapper'>
       <h2>SELECCIONA DIRECCIÓN DE ENTREGA</h2>
       {addresses.length > 0 ? (
         addresses.map(address => (
-          <div key={address.id}>
-            <input 
-              type="radio" 
-              id={`address-${address.id}`} 
-              name="address" 
-              value={address.id} 
-              onChange={() => setSelectedAddress(address.id)} 
-            />
-            <label htmlFor={`address-${address.id}`}><p>
-            {address.street_one} - {address.street_two}<br/>
-            {address.city}<br/>
-            {address.province}<br/>
-            {address.country}<br/>
-            {address.postal_code}<br/>
-          </p></label>
+          <div key={address.id} className='address-container'>
+            <div className='address-input'>
+              <input 
+                type="radio" 
+                id={`address-${address.id}`} 
+                name="address" 
+                value={address.id} 
+                onChange={() => setSelectedAddress(address.id)} 
+              />
+            </div>
+
+            <div  className='address-label'>
+              <label htmlFor={`address-${address.id}`}>
+                <p>
+                  <strong>{address.street_one} - {address.street_two}</strong><br/>
+                  {address.city}<br/>
+                  {address.province}<br/>
+                  {address.country}<br/>
+                  {address.postal_code}<br/>
+              </p>
+            </label>
+            </div>
+            
           </div>
         ))
       ) : (
         <p>No hay direcciones disponibles.</p>
       )}
-      <button onClick={handleSubmit} disabled={!selectedAddress}>Continuar</button>
+      <button className='btn' onClick={handleSubmit} disabled={!selectedAddress}>Continuar</button>
     </div>
   );
 };

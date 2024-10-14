@@ -4,7 +4,7 @@ import aboutImage from '../../../static/assets/images/about-page/about-image.jpg
 
 export default function AboutUsPage() {
   return (
-    <div className='about-us-wrapper'>
+    <div className='about-wrapper'>
       <div className='about-image-wrapper'>
         <Image
           src={aboutImage}

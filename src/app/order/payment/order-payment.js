@@ -15,7 +15,8 @@ const OrderPayment = () => {
  
   const auth = useSelector(state => state.auth);
   const cartItems = useSelector(state => state.cart.items);
-  const [message, setMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
   const router = useRouter();
   const [selectedAddress, setSelectedAddress] = useState(null);
@@ -54,7 +55,7 @@ const OrderPayment = () => {
 
   const onApprove = (data, actions) => {
     return actions.order.capture().then(function(details) {
-      setMessage('Pago procesado correctamente!');
+      setSuccessMessage('Pago procesado correctamente!');
   
       const transactionData = {
         payer_name: details.payer.name.given_name,
@@ -86,23 +87,27 @@ const OrderPayment = () => {
         })
         .catch(error => {
           console.error('Error during server request:', error);
-          setMessage('Se produjo un error al procesar el pago.');
+          setErrorMessage('Se produjo un error al procesar el pago.');
         });
     });
   };
   
  
   return (
-    <div>
+    <div className="order-payment-wrapper">
       <h2>INTRODUCE LOS DATOS DE PAGO</h2>
-      <PayPalScriptProvider options={initialOptions}>
-        <PayPalButtons 
-          style={{ layout: "horizontal" }} 
-          createOrder={(data, actions) => createOrder(data, actions)} 
-          onApprove={(data, actions) => onApprove(data, actions)}
-        />
-      </PayPalScriptProvider>
-      {message && <p>{message}</p>}
+
+      <div className="paypal-wrapper">
+        <PayPalScriptProvider options={initialOptions}>
+          <PayPalButtons 
+            style={{ layout: "horizontal" }} 
+            createOrder={(data, actions) => createOrder(data, actions)} 
+            onApprove={(data, actions) => onApprove(data, actions)}
+          />
+        </PayPalScriptProvider>
+        {successMessage && <div className='success-message'><p>{successMessage}</p></div>} 
+        {errorMessage && <div className='error-message'><p>{errorMessage}</p></div>} 
+      </div>
     </div>
     
   );

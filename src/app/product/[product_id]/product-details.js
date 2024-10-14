@@ -145,18 +145,20 @@ const ProductDetails = () => {
               <p>Composición: {products_material}</p>
 
               <div className='btn-wrapper'>
-                {products_quantity > 0 ? (
-                  <button onClick={handleAddProductToCart} className='btn'>Añadir</button>
-                ) : (
-                  <div className='btn-agotado'><button disabled className='btn'>Agotado</button></div>
-                )}
-
-                {userRole === 'ADMIN' && (
-                  <button onClick={toggleEdit} className='btn'>Editar</button>
-                )}
+                <div className='add-btn'>
+                  {products_quantity > 0 ? (
+                    <button onClick={handleAddProductToCart} className='btn'>Añadir</button>
+                  ) : (
+                    <div className='btn-agotado'><button disabled className='btn'>Agotado</button></div>
+                  )}
+                </div>
+                
+                <div className='edit-btn'>
+                  {userRole === 'ADMIN' && (
+                    <button onClick={toggleEdit} className='btn'>Editar</button>
+                  )}
+                </div>
               </div>
-
-              
             </div>  
           </div>
         ) : (

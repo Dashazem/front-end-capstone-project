@@ -70,60 +70,65 @@ const AdminOrders = () => {
   }, [orders, loading, loadingMore, totalOrders]);
 
   return (
-    <div>
+    <div className='admin-orders-wrapper'>
       <h2>TODOS LOS PEDIDOS</h2>
-
+  
       {loading && orders.length === 0 ? (
         <div className='spinner'>
           <ImSpinner3 className="spinner-icon" />
         </div>
       ) : (
-        <div>
-          {orders.length === 0 ? (
-            <p>No hay pedidos disponibles.</p>
-          ) : (
-            <ul>
-              {orders.map(order => (
-                <li key={order.order_number}>
-                  <button onClick={() => handleOrderClick(order.order_number)}>
-                    {order.order_number} - {order.total_price} - {new Date(order.date).toLocaleString()} 
-                    {order.seen ? ' (Visto)' : ' (Nuevo)'}
-                  </button>
-
-                  {!order.seen && (
-                    <button onClick={() => markAsSeen(order.order_number)}>Marcar como visto</button>
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
-
+        <div className='admin-orders-container'>
+          <div className='orders-list'>
+            {orders.length === 0 ? (
+              <p>No hay pedidos disponibles.</p>
+            ) : (
+              <ul>
+                {orders.map(order => (
+                  <li key={order.order_number}>
+                    <div className='order-buttons'>
+                      <button className='btn' onClick={() => handleOrderClick(order.order_number)}>
+                        {<strong>{order.order_number}</strong>} - {order.total_price} EUR - {new Date(order.date).toLocaleString()} 
+                        {order.seen ? ' (Visto)' : ' (Nuevo)'}
+                      </button>
+                    </div>
+                    
+  
+                    {!order.seen && (
+                      <button className='btn' onClick={() => markAsSeen(order.order_number)}>Marcar como visto</button>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+  
           {selectedOrder && (
-            <div>
+            <div className='selected-order'>
               <h3>Detalles del pedido: {selectedOrder.order_number}</h3>
               {selectedOrder.customer ? (
                 <>
-                  <p>Cliente: {selectedOrder.customer.first_name} {selectedOrder.customer.surname}</p>
-                  <p>Email: {selectedOrder.customer.email}</p>
+                  <p><strong>Cliente:</strong> {selectedOrder.customer.first_name} {selectedOrder.customer.surname}</p>
+                  <p><strong>Email:</strong> {selectedOrder.customer.email}</p>
                 </>
               ) : (
                 <p>Información del cliente no disponible.</p>
               )}
               {selectedOrder.contact && (
-                <p>Teléfono: +{selectedOrder.contact.phone_number}</p>
+                <p><strong>Teléfono:</strong> +{selectedOrder.contact.phone_number}</p>
               )}
               {selectedOrder.transaction && (
-                <p>Transacción: {selectedOrder.transaction.number} - Monto: {selectedOrder.transaction.amount}</p>
+                <p><strong>Transacción:</strong> {selectedOrder.transaction.number} - Monto: {selectedOrder.transaction.amount} EUR</p>
               )}
               <ul>
                 {selectedOrder.products.map(product => (
                   <li key={product.id}>
                     <h4>{product.name}</h4>
-                    <p>Precio: {product.price} - Cantidad: {product.quantity} - Ref. ID: {product.id}</p>
+                    <p>Precio: {product.price} EUR - Cantidad: {product.quantity} - Ref. ID: {product.id}</p>
                   </li>
                 ))}
               </ul>
-              <p>Total: {selectedOrder.total_price}</p>
+              <p><strong>Total:</strong> {selectedOrder.total_price} EUR</p>
               <h4>Dirección de entrega:</h4>
               <p>{selectedOrder.address.street_one}, {selectedOrder.address.city}, {selectedOrder.address.province}, {selectedOrder.address.country}, {selectedOrder.address.postal_code}</p>
             </div>
@@ -137,6 +142,7 @@ const AdminOrders = () => {
       )}
     </div>
   );
+  
 };
 
 export default AdminOrders;

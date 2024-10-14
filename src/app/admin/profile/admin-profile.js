@@ -93,53 +93,72 @@ const AdminProfile = () => {
   };
 
   return (
-    <div>
-      <div>
-        <h2>CAMBIAR EMAIL</h2>
-        <input
-          type="password"
-          placeholder="Contraseña actual"
-          value={currentPassword}
-          onChange={(e) => {setCurrentPassword(e.target.value);
-            setEmailMessage('');
-            setPasswordErrorEmailChangeMessage('')}
-          }
-        />
+    <div className='profile-wrapper'>
+      <div className='change-email-wrapper'>
+        <div className='change-email-header'>
+          <h2>CAMBIAR EMAIL</h2>
+        </div>
         
-        <input
-          type="email"
-          placeholder="Nuevo email"
-          value={newEmail}
-          onChange={(e) => setNewEmail(e.target.value)}
-        />
-        <button className='btn' onClick={handleEmailUpdate}>Actualizar email</button>
-        {emailMessage && <div><p>{emailMessage}</p></div>} 
-        {passwordErrorEmailChangeMessage && <div><p>{passwordErrorEmailChangeMessage}</p></div>}
+        <div className='change-email-inputs'>
+          <input
+            type="password"
+            placeholder="Contraseña actual"
+            value={currentPassword}
+            onChange={(e) => {setCurrentPassword(e.target.value);
+              setEmailMessage('');
+              setPasswordErrorEmailChangeMessage('')}
+            }
+          />
+          
+          <input
+            type="email"
+            placeholder="Nuevo email"
+            value={newEmail}
+            onChange={(e) => setNewEmail(e.target.value)}
+          />
+        </div>
+        
+        <div className='change-email-button'>
+          <button className='btn' onClick={handleEmailUpdate}>Actualizar email</button>
+        </div>
+        
+        {emailMessage && <div className='success-message'><p>{emailMessage}</p></div>} 
+        {passwordErrorEmailChangeMessage && <div className='error-message'><p>{passwordErrorEmailChangeMessage}</p></div>}
       </div>
 
-      <div>
-        <h2>CAMBIAR CONTRASEÑA</h2>
-        <input
-          type="password"
-          placeholder="Contraseña actual"
-          value={currentPasswordForUpdate}
-          onChange={(e) => {setCurrentPasswordForUpdate(e.target.value);
-            setPasswordErrorPasswordChangeMessage('');
-          }}
-        />
-        <input 
-          type="password" 
-          placeholder="Nueva contraseña" 
-          value={newPassword} 
-          onChange={(e) => setNewPassword(e.target.value)} 
-        />
-        <button className='btn' onClick={handlePasswordUpdate}>Guardar</button>
-        {passwordMessage && <div><p>{passwordMessage}</p></div>}
-        {passwordErrorPasswordChangeMessage && <div><p>{passwordErrorPasswordChangeMessage}</p></div>}
+      <div className='change-password-wrapper'>
+        <div className='change-password-header'>
+          <h2>CAMBIAR CONTRASEÑA</h2>
+        </div>
+        
+        <div className='change-password-inputs'>
+          <input
+            type="password"
+            placeholder="Contraseña actual"
+            value={currentPasswordForUpdate}
+            onChange={(e) => {setCurrentPasswordForUpdate(e.target.value);
+              setPasswordErrorPasswordChangeMessage('');
+            }}
+          />
+
+          <input 
+            type="password" 
+            placeholder="Nueva contraseña" 
+            value={newPassword} 
+            onChange={(e) => setNewPassword(e.target.value)} 
+          />
+        </div>
+        
+        <div className='change-password-button'>
+          <button className='btn' onClick={handlePasswordUpdate}>Guardar</button>
+        </div>
+        
+        {passwordMessage && <div className='success-message'><p>{passwordMessage}</p></div>}
+        {passwordErrorPasswordChangeMessage && <div className='error-message'><p>{passwordErrorPasswordChangeMessage}</p></div>}
       </div>
 
       <div className='delete-link'>
-        <Link href="/delete-account">Eliminar tu cuenta</Link><br />
+        <Link href="/delete-account"><h3>ELIMINAR TU CUENTA</h3></Link><br />
       </div>
     </div>
   );

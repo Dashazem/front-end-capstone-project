@@ -1,0 +1,23 @@
+.create-admin-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 150px;
+  margin-bottom: 60px;
+
+  .create-admin-inputs {
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    @include input-element();
+    input {
+      width: 30%;
+    }
+  }
+
+  .create-admin-button {
+    @include button();
+  }
+}
+

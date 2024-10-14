@@ -18,7 +18,8 @@ export default function UserEditAddress() {
     addresses_postal_code: '',
   });
   
-  const [message, setMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export default function UserEditAddress() {
         }, { withCredentials: true });
       } catch (error) {
         console.error('Error fetching address');
-        setMessage('Error al cargar la dirección.');
+        setErrorMessage('Error al cargar la dirección.');
       }
     };
 
@@ -60,13 +61,13 @@ export default function UserEditAddress() {
         address_id: addressId, 
         customers_id: userId, 
       }, { withCredentials: true });
-      setMessage('Dirección actualizada correctamente!');
+      setSuccessMessage('Dirección actualizada correctamente!');
       setTimeout(() => {
         router.push('/user/addresses'); 
       }, 2000);
     } catch (error) {
       console.error('Error updating address:', error);
-      setMessage('Error al actualizar la dirección. Inténtalo de nuevo.');
+      setErrorMessage('Error al actualizar la dirección. Inténtalo de nuevo.');
     }
   };
 
@@ -149,7 +150,8 @@ export default function UserEditAddress() {
           </label>
         </div>
         <button type="submit">Actualizar Dirección</button>
-        {message && <p>{message}</p>}
+        {successMessage && <div className='success-message'><p>{successMessage}</p></div>}
+        {errorMessage && <div className='error-message'><p>{errorMessage}</p></div>}
       </form>
     </div>
   );

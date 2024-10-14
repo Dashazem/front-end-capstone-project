@@ -66,7 +66,7 @@ const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity, auth }) => {
             <h2>TU CESTA ({getTotalQuantity()})</h2>
 
             <div className="error-message">
-              {errorMessage && <p>{errorMessage}</p>}
+              {errorMessage && <div className='error-message'><p>{errorMessage}</p></div>}
             </div>
           </div>
           
@@ -115,7 +115,7 @@ const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity, auth }) => {
           <div className='process-order-contaniner'>
             <div className='process-order-button' >
               <button className='btn' onClick={handleStartOrder}>TRAMITAR PEDIDO</button>
-              {message && <p>{message}</p>}
+              {message && <div className='error-message'><p>{message}</p></div>}
             </div>
 
             <div className='process-order-content'>

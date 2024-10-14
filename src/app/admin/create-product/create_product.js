@@ -87,8 +87,6 @@ export default class CreateProduct extends Component {
     return formData;
   }
   
-  
-
   handleSubmit(event) {
     event.preventDefault(); 
   
@@ -142,102 +140,114 @@ export default class CreateProduct extends Component {
 
   render() {
     return (
-      <div >
-          <form onSubmit={this.handleSubmit}>
-          <input 
-            type="text"
-            onChange={this.handleChange} 
-            name="products_name"
-            placeholder="Nombre*"
-            value={this.state.products_name}
-          />
+      <div className='create-product-wrapper'>
+        <form onSubmit={this.handleSubmit}>
+          <div className='create-product-container'>
+            <div className='create-product-inputs'>
+              <input 
+                type="text"
+                onChange={this.handleChange} 
+                name="products_name"
+                placeholder="Nombre*"
+                value={this.state.products_name}
+              />
 
-          <select 
-            name="products_category"
-            value={this.state.products_category}
-            onChange={this.handleChange}
-            className='select-element'
-          >
-            <option value='Juguetes'>Juguetes</option>
-            <option value='Patucos'>Patucos</option>
-            <option value='Moviles'>Moviles</option>
-            <option value='Mordedores'>Mordedores</option>
-          </select>
+              <select 
+                name="products_category"
+                value={this.state.products_category}
+                onChange={this.handleChange}
+                className='select-element'
+              >
+                <option value='Juguetes'>Juguetes</option>
+                <option value='Patucos'>Patucos</option>
+                <option value='Moviles'>Moviles</option>
+                <option value='Mordedores'>Mordedores</option>
+              </select>
 
-          <input 
-            type="text"
-            onChange={this.handleChange} 
-            name="products_material"
-            placeholder="Material*"
-            value={this.state.products_material}
-          />
-     
-          <input 
-            type="text"
-            onChange={this.handleChange} 
-            name="products_quantity"
-            placeholder="Cantidad*"
-            value={this.state.products_quantity}
-          />
+              <input 
+                type="text"
+                onChange={this.handleChange} 
+                name="products_material"
+                placeholder="Material*"
+                value={this.state.products_material}
+              />
+          
+              <input 
+                type="text"
+                onChange={this.handleChange} 
+                name="products_quantity"
+                placeholder="Cantidad*"
+                value={this.state.products_quantity}
+              />
 
-          <input 
-            type="text"
-            onChange={this.handleChange} 
-            name="products_price"
-            placeholder="Precio* (ej. 15.00)"
-            value={this.state.products_price}
-          />
+              <input 
+                type="text"
+                onChange={this.handleChange} 
+                name="products_price"
+                placeholder="Precio* (ej. 15.00)"
+                value={this.state.products_price}
+              />
 
-          <textarea 
-            type="text"
-            onChange={this.handleChange} 
-            name="products_description"
-            placeholder="Descripción*"
-            value={this.state.products_description}
-          />
-
-          <div>
-            <DropzoneComponent
-              ref={this.mainRef}
-              config={this.componentConfig()}
-              djsConfig={this.djsConfig()}
-              eventHandlers={{
-                addedfile: (file) => this.handleImageDrop(file, 'main'),
-              }}
-            >
-              <div className='dz-message'>Imagen Principal*</div>
-            </DropzoneComponent>
-
-            <DropzoneComponent
-              ref={this.firstAdditionalRef}
-              config={this.componentConfig()}
-              djsConfig={this.djsConfig()}
-              eventHandlers={{
-                addedfile: (file) => this.handleImageDrop(file, 'firstAdditional'),
-              }}
-            >
-              <div className='dz-message'>Imagen Adicional 1</div>
-            </DropzoneComponent>
-
-            <DropzoneComponent
-              ref={this.secondAdditionalRef}
-              config={this.componentConfig()}
-              djsConfig={this.djsConfig()}
-              eventHandlers={{
-                addedfile: (file) => this.handleImageDrop(file, 'secondAdditional'),
-              }}
-            >
-              <div className='dz-message'>Imagen Adicional 2</div>
-            </DropzoneComponent>
-          </div> 
-
-          <button className='btn'>Save</button>
-
-          {this.state.successMessage && (
-            <div className="success-message">
-              {this.state.successMessage}
+              <textarea 
+                type="text"
+                onChange={this.handleChange} 
+                name="products_description"
+                placeholder="Descripción*"
+                value={this.state.products_description}
+              />
             </div>
-          )}
+            
+            <div className='right-column'>
+              <div className='create-product-uploaders'>
+                <DropzoneComponent
+                  ref={this.mainRef}
+                  config={this.componentConfig()}
+                  djsConfig={this.djsConfig()}
+                  eventHandlers={{
+                    addedfile: (file) => this.handleImageDrop(file, 'main'),
+                  }}
+                >
+                  <div className='dz-message'>Imagen Principal*</div>
+                </DropzoneComponent>
+
+                <DropzoneComponent
+                  ref={this.firstAdditionalRef}
+                  config={this.componentConfig()}
+                  djsConfig={this.djsConfig()}
+                  eventHandlers={{
+                    addedfile: (file) => this.handleImageDrop(file, 'firstAdditional'),
+                  }}
+                >
+                  <div className='dz-message'>Imagen Adicional 1</div>
+                </DropzoneComponent>
+
+                <DropzoneComponent
+                  ref={this.secondAdditionalRef}
+                  config={this.componentConfig()}
+                  djsConfig={this.djsConfig()}
+                  eventHandlers={{
+                    addedfile: (file) => this.handleImageDrop(file, 'secondAdditional'),
+                  }}
+                >
+                  <div className='dz-message'>Imagen Adicional 2</div>
+                </DropzoneComponent>
+              </div>
+
+              <div className='create-product-button'>
+                <button className='btn'>Save</button>
+              </div>
+              
+              {this.state.successMessage && (
+                <div className="success-message">
+                  {this.state.successMessage}
+                </div>
+              )}
+              
+            </div> 
+          </div>
+          
+
+          
         </form>
       </div>
     );

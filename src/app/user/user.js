@@ -35,11 +35,11 @@ export default function User() {
   return (
     <div className='account-page'>
        {customerData ? (
-        <>
+        <div className='customer-data'>
           <h2>{customerData.first_name} {customerData.surname}</h2>
           <p>Email: {customerData.email}</p>
           <p>Teléfono: +{customerData.contact.phone_number}</p>
-        </>
+        </div>
       ) : (
         <p>Loading customer data...</p> 
       )}

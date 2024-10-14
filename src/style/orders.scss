@@ -1,0 +1,87 @@
+.admin-orders-wrapper,
+.user-orders-wrapper {
+  margin-top: 20px;
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-bottom: 50px;
+
+  .admin-orders-container,
+  .user-orders-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    
+    .orders-list {
+      width: 65%; 
+      margin-right: 50px;
+  
+      ul {
+        list-style-type: none;
+        padding: 0;
+        
+        li {
+          margin-bottom: 10px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 80%;
+  
+          .order-buttons {
+            @include button();
+            .btn {
+              padding: 5px;                
+              background-color: white;
+            }             
+            
+            
+          }
+  
+          @include button();
+          .btn {
+            padding: 5px;
+          }
+        }
+      }
+    }
+  
+    .selected-order {
+      position: absolute; 
+      top: 20px; // Позиціонуйте його вгорі
+      right: 50px;
+      width: 35%; // Або інше значення, яке вам підходить
+      padding: 15px;
+      //background-color: $pastel-pink;
+      border: 1px solid $dark-grey;
+      border-radius: 8px;
+      
+      h3 {
+        margin-bottom: 10px;
+        //color: $dark-blue;
+      }
+  
+      p {
+        margin: 5px 0;
+        color: $dark-grey;
+      }
+  
+      h4 {
+        margin-top: 10px;
+        //color: $dark-blue;
+      }
+  
+      ul {
+        list-style-type: none;
+        padding: 0;
+  
+        li {
+          background-color: $pastel-pink;
+          border: 1px solid $dark-grey;
+          border-radius: 4px;
+          padding: 10px;
+          margin: 5px 0;
+        }
+      }
+    }
+  }
+  
+}

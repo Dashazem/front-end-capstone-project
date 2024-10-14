@@ -1,0 +1,42 @@
+.user-addresses-wrapper {
+  margin-left: 150px;
+  margin-bottom: 60px;
+
+  @include button();
+  .btn {
+    padding: 10px 15px;
+  }
+
+  p {
+    font-size: 1.1em;
+    margin-top: 0px;
+    margin-bottom: 20px;
+  }
+
+  .address-containers {
+    margin-bottom: 30px;
+    .address-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 40%;
+      border: 1px solid $grey;
+      border-radius: 5px;
+      padding: 10px 15px;
+      margin-bottom: 5px;
+  
+      .address-container-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+  
+        @include button();
+        .btn {
+          margin-top: 5px;
+          padding: 6px 10px;
+          background-color: $pastel-pink;
+        }
+      }
+    }
+  }
+}

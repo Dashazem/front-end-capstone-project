@@ -1,0 +1,24 @@
+.admin-customers-wrapper {
+  margin-left: 100px;
+  margin-bottom: 50px;
+
+  table {
+    width: 90%; 
+
+    th, td {
+      text-align: center; 
+      padding: 10px; 
+    }
+
+    th {
+      background-color: $pastel-pink; 
+      color: $deep-grey; 
+    }
+
+    tr {
+      &:nth-child(even) {
+        background-color: $pastel-green; 
+      }
+    }
+  }
+}

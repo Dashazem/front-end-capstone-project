@@ -9,7 +9,8 @@ export default function CreateAdmin() {
     email: '',
     password: '',
   });
-  const [message, setMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,13 +18,15 @@ export default function CreateAdmin() {
       ...prevData,
       [name]: value,
     }));
+    setErrorMessage('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://127.0.0.1:5000/administrators', formData, { withCredentials: true });
-      setMessage('Administrador agregado correctamente');
+      setErrorMessage('');
+      setSuccessMessage('Administrador agregado correctamente');
       setFormData({
         first_name: '',
         surname: '',
@@ -35,15 +38,18 @@ export default function CreateAdmin() {
       }, 2000);
     } catch (error) {
       console.error('Error creating administrator:', error);
-      setMessage('Error al agregar administrador. Inténtalo de nuevo');
+      setErrorMessage('Error al agregar administrador. Inténtalo de nuevo');
     }
   };
 
   return (
-    <div>
-      <h2>AGREGAR NUEVO ADMINISTRADOR</h2>
+    <div className='create-admin-wrapper'>
+      <div className='create-admin-header'>
+        <h2>AGREGAR NUEVO ADMINISTRADOR</h2>
+      </div>
+      
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className='create-admin-inputs'>
           <input
             type="text"
             name="first_name"
@@ -52,8 +58,7 @@ export default function CreateAdmin() {
             onChange={handleChange}
             required
           />
-        </div>
-        <div>
+        
           <input
             type="text"
             name="surname"
@@ -62,8 +67,7 @@ export default function CreateAdmin() {
             onChange={handleChange}
             required
           />
-        </div>
-        <div>
+        
           <input
             type="email"
             name="email"
@@ -72,8 +76,7 @@ export default function CreateAdmin() {
             onChange={handleChange}
             required
           />
-        </div>
-        <div>
+        
           <input
             type="password"
             name="password"
@@ -83,8 +86,13 @@ export default function CreateAdmin() {
             required
           />
         </div>
-        <button type="submit">Agregar Administrador</button>
-        {message && <p>{message}</p>}
+       
+        <div className='create-admin-button'>
+          <button className='btn' type="submit">Agregar Administrador</button>
+        </div>
+        
+        {successMessage && <div className='success-message'><p>{successMessage}</p></div>}
+        {errorMessage && <div className='error-message'><p>{errorMessage}</p></div>}
       </form>
     </div>
   );
