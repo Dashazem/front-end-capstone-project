@@ -24,7 +24,7 @@ export default function CreateAdmin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:5000/administrators', formData, { withCredentials: true });
+      const response = await axios.post('https://back-end-capstone-project.onrender.com/administrators', formData, { withCredentials: true });
       setErrorMessage('');
       setSuccessMessage('Administrador agregado correctamente');
       setFormData({

@@ -20,7 +20,7 @@ const AdminOrders = () => {
     setLoading(currentPage === 1);
 
     try {
-      const response = await axios.get(`http://localhost:5000/orders/admin?page=${currentPage}`, { withCredentials: true });
+      const response = await axios.get(`https://back-end-capstone-project.onrender.com/orders/admin?page=${currentPage}`, { withCredentials: true });
       setOrders(prevOrders => {
         const existingIds = new Set(prevOrders.map(order => order.order_number));
         const newOrders = response.data.orders.filter(order => !existingIds.has(order.order_number));
@@ -37,7 +37,7 @@ const AdminOrders = () => {
 
   const handleOrderClick = async (orderNumber) => {
     try {
-      const response = await axios.get(`http://localhost:5000/orders/admin/number/${orderNumber}`, { withCredentials: true });
+      const response = await axios.get(`https://back-end-capstone-project.onrender.com/orders/admin/number/${orderNumber}`, { withCredentials: true });
       setSelectedOrder(response.data);
     } catch (error) {
       console.error('Error fetching order details:', error);
@@ -47,7 +47,7 @@ const AdminOrders = () => {
 
   const markAsSeen = async (orderNumber) => {
     try {
-      await axios.patch(`http://localhost:5000/orders/mark-seen/${orderNumber}`, { withCredentials: true });
+      await axios.patch(`https://back-end-capstone-project.onrender.com/orders/mark-seen/${orderNumber}`, { withCredentials: true });
       setOrders(orders.map(order => 
         order.order_number === orderNumber ? { ...order, seen: true } : order
       ));

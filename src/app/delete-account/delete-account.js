@@ -19,8 +19,8 @@ export default function DeleteAccount() {
   const handleDeleteAccount = async () => {
     try {
       const endpoint = user.role === 'ADMIN' 
-        ? `http://127.0.0.1:5000/administrators/${user.id}` 
-        : `http://127.0.0.1:5000/customers/${user.id}`;
+        ? `https://back-end-capstone-project.onrender.com/administrators/${user.id}` 
+        : `https://back-end-capstone-project.onrender.com/customers/${user.id}`;
       
       await axios.delete(endpoint, { withCredentials: true });
 

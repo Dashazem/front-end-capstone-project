@@ -23,7 +23,7 @@ const EditProduct = ({ product }) => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const response = await axios.get(`http://127.0.0.1:5000/product/${product.products_id}`, { withCredentials: true });
+      const response = await axios.get(`https://back-end-capstone-project.onrender.com/product/${product.products_id}`, { withCredentials: true });
       const images = response.data.product.image_product || [];
       const imageMapping = {
         main_image: images[0] || '',
@@ -81,7 +81,7 @@ const EditProduct = ({ product }) => {
     });
 
     try {
-      await axios.patch(`http://127.0.0.1:5000/products/${product.products_id}`, formDataToSend, { withCredentials: true });
+      await axios.patch(`https://back-end-capstone-project.onrender.com/products/${product.products_id}`, formDataToSend, { withCredentials: true });
       setSuccessMessage('Producto editado correctamente');
       setTimeout(() => {
         router.push(`/products/${product.products_category.toLowerCase()}`);
@@ -95,7 +95,7 @@ const EditProduct = ({ product }) => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://127.0.0.1:5000/products/${product.products_id}`, { withCredentials: true });
+      await axios.delete(`https://back-end-capstone-project.onrender.com/${product.products_id}`, { withCredentials: true });
       setSuccessMessage('Producto eliminado correctamente');
       setTimeout(() => {
         router.push(`/products/${product.products_category.toLowerCase()}`);

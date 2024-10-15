@@ -44,12 +44,13 @@ const Product = ({ product }) => {
   return (
     <div className='product-wrapper'>
       <ShoppingCartModal 
-          handleCloseCartModal={handleCloseCartModal} 
-          modalIsOpen={cartModalIsOpen}
-          products_name={products_name} 
-          products_price={products_price}
-          image_product={image_product}/>
-
+        handleCloseCartModal={handleCloseCartModal} 
+        modalIsOpen={cartModalIsOpen}
+        products_name={products_name} 
+        products_price={products_price}
+        image_product={image_product}
+      />
+      
       <div className='image-wrapper'>
         <div className={`${products_quantity > 0 ? 'image-section' : 'image-agotado'}`}>
           <Link href={`/product/${products_id}`}>

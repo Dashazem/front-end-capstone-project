@@ -29,7 +29,7 @@ const ProductDetails = () => {
 
 
   const getProduct = (product_id) => {
-    axios.get(`http://127.0.0.1:5000/product/${product_id}`, { withCredentials: true })
+    axios.get(`https://back-end-capstone-project.onrender.com/product/${product_id}`, { withCredentials: true })
       .then(response => {
         setProduct(response.data.product);
 

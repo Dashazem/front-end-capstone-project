@@ -30,7 +30,7 @@ export default function UserAddAddress() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://127.0.0.1:5000/add_address`, {
+      await axios.post(`https://back-end-capstone-project.onrender.com/add_address`, {
         ...formData,
         customers_id: userId,
       }, { withCredentials: true });

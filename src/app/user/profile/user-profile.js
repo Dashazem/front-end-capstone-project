@@ -27,7 +27,7 @@ const UserProfile = () => {
 
   const verifyCurrentPassword = async (password) => {
     try {
-      const response = await axios.post('http://127.0.0.1:5000/customers/verify_password', {
+      const response = await axios.post('https://back-end-capstone-project.onrender.com/customers/verify_password', {
         customers_id: userId,
         customers_password: password
       }, { withCredentials: true });
@@ -54,7 +54,7 @@ const UserProfile = () => {
     }
 
     try {
-      const response = await axios.patch('http://127.0.0.1:5000/customers/update_email', {
+      const response = await axios.patch('https://back-end-capstone-project.onrender.com/customers/update_email', {
         customers_id: userId,
         customers_email: newEmail,
       }, { withCredentials: true });
@@ -84,7 +84,7 @@ const UserProfile = () => {
     }
   
     try {
-      const response = await axios.patch('http://127.0.0.1:5000/customers/update_phone', {
+      const response = await axios.patch('https://back-end-capstone-project.onrender.com/customers/update_phone', {
         customers_id: userId,
         customers_phone_number: phoneNumber,
       }, { withCredentials: true });
@@ -109,7 +109,7 @@ const UserProfile = () => {
     }
 
     try {
-      const response = await axios.patch('http://127.0.0.1:5000/customers/update_password', {
+      const response = await axios.patch('https://back-end-capstone-project.onrender.com/customers/update_password', {
         customers_id: userId,
         customers_password: newPassword,
       }, { withCredentials: true });

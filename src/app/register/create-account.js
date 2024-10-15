@@ -55,7 +55,7 @@ const CreateAccount = () => {
     event.preventDefault();
     setErrorMessage(''); 
 
-    axios.post('http://127.0.0.1:5000/customers', 
+    axios.post('https://back-end-capstone-project.onrender.com/customers', 
       formData, 
       { withCredentials: true }
     ).then(response => {

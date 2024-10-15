@@ -19,7 +19,7 @@ export default function AdminCustomers() {
     setLoading(currentPage === 1);
   
     try {
-      const response = await axios.get(`http://localhost:5000/admin/customers?page=${currentPage}`, { withCredentials: true });
+      const response = await axios.get(`https://back-end-capstone-project.onrender.com/admin/customers?page=${currentPage}`, { withCredentials: true });
       setCustomers(prevCustomers => {
         const existingIds = new Set(prevCustomers.map(customer => customer.email)); 
         const newCustomers = response.data.customers.filter(customer => !existingIds.has(customer.email));

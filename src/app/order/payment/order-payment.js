@@ -61,7 +61,7 @@ const OrderPayment = () => {
       };
 
       
-      axios.post('http://localhost:5000/transactions', transactionData, { withCredentials: true })
+      axios.post('https://back-end-capstone-project.onrender.com/transactions', transactionData, { withCredentials: true })
         .then(response => {
           const transactionId = response.data.transaction_id;
 

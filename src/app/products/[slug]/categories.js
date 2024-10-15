@@ -23,7 +23,7 @@ const ProductsByCategory = () => {
     setLoadingMore(page > 1); 
     setLoading(page === 1); 
 
-    axios.get(`http://127.0.0.1:5000/products?category=${category}&page=${page}`, { withCredentials: true })
+    axios.get(`https://back-end-capstone-project.onrender.com/products?category=${category}&page=${page}`, { withCredentials: true })
       .then(response => {
         setProducts(prevProducts => {
           const existingIds = new Set(prevProducts.map(product => product.products_id));

@@ -30,7 +30,7 @@ const UserOrders = () => {
     setLoading(currentPage === 1);
 
     try {
-      const response = await axios.get(`http://localhost:5000/orders/user/${userId}?page=${currentPage}`, { withCredentials: true });
+      const response = await axios.get(`https://back-end-capstone-project.onrender.com/orders/user/${userId}?page=${currentPage}`, { withCredentials: true });
       
       if (response.data.orders.length > 0) {
         setOrders(prevOrders => {
@@ -50,7 +50,7 @@ const UserOrders = () => {
 
   const handleOrderClick = async (orderNumber) => {
     try {
-      const response = await axios.get(`http://localhost:5000/orders/user/number/${orderNumber}`, { withCredentials: true });
+      const response = await axios.get(`https://back-end-capstone-project.onrender.com/orders/user/number/${orderNumber}`, { withCredentials: true });
       setSelectedOrder(response.data);
     } catch (error) {
       console.error('Error fetching order details:', error);

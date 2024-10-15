@@ -15,7 +15,7 @@ export default function User() {
   useEffect(() => {
     const fetchCustomerData = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:5000/customers/${userId}`, { withCredentials: true });
+        const response = await axios.get(`https://back-end-capstone-project.onrender.com/customers/${userId}`, { withCredentials: true });
         setCustomerData(response.data.customer);
       } catch (error) {
         console.error('Error fetching customer data:', error);

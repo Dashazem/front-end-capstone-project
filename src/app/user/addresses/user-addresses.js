@@ -15,7 +15,7 @@ export default function UserAddresses() {
   useEffect(() => {
     const fetchAddresses = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:5000/customers/${userId}/addresses`, { withCredentials: true });
+        const response = await axios.get(`https://back-end-capstone-project.onrender.com/customers/${userId}/addresses`, { withCredentials: true });
         setAddresses(response.data.addresses);
       } catch (error) {
         console.error('Error fetching addresses:', error);
@@ -33,7 +33,7 @@ export default function UserAddresses() {
 
   const handleDeleteAddress = async (addressId) => {
     try {
-      await axios.delete(`http://127.0.0.1:5000/delete_address/${addressId}`, { withCredentials: true });
+      await axios.delete(`https://back-end-capstone-project.onrender.com/delete_address/${addressId}`, { withCredentials: true });
       setAddresses(addresses.filter(address => address.id !== addressId));
     } catch (error) {
       console.error('Error deleting address:', error);

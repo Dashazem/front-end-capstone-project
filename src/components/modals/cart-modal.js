@@ -12,19 +12,35 @@ export default class ShoppingCartModal extends Component {
 
     this.customStyles = {
       content: {
-        top: "90px", 
+        top: "100px", 
         left: "1175px", 
         bottom: "auto",
         marginRight: "0",
         marginLeft: "0",
         width: "300px",
-        height: "auto", 
+        height: "auto",
       },
 
       overlay: {
         backgroundColor: "rgba(255,255,255, 0)",
-        zIndex: "1000"
-      }
+        zIndex: "1000",
+      },
+
+      mobile: {
+        content: {
+          top: "100px",
+          left: "25px",
+          right: "20px",
+          bottom: "auto",
+          margin: "0 auto",
+          width: "80%",
+          maxWidth: "300px",
+          padding: "20px",
+          borderRadius: "8px",
+          backgroundColor: "white",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+        },
+      },
     }
 
     this.handleLinkClick = this.handleLinkClick.bind(this);
@@ -40,7 +56,7 @@ export default class ShoppingCartModal extends Component {
     }
   }
 
- componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps) {
     if (prevProps.modalIsOpen !== this.props.modalIsOpen) {
       document.body.style.overflow = this.props.modalIsOpen ? 'hidden' : 'auto'; 
       if (this.props.modalIsOpen) {
@@ -63,12 +79,16 @@ export default class ShoppingCartModal extends Component {
     clearTimeout(this.autoCloseModal); 
   }
 
-
   render() {
-    const { products_name, products_price, image_product } = this.props; 
+    const { products_name, products_price, image_product, modalIsOpen } = this.props; 
+    const isMobile = window.innerWidth <= 615; 
+
     return (
       <div className='cart-modal-wrapper'>
-        <ReactModal style={this.customStyles} onRequestClose={() => {this.props.handleCloseCartModal();}} isOpen={this.props.modalIsOpen}>
+        <ReactModal 
+          style={isMobile ? this.customStyles.mobile : this.customStyles} 
+          onRequestClose={() => {this.props.handleCloseCartModal();}} 
+          isOpen={modalIsOpen}>
           <div className='cart-modal-content'>
             <p>AÑADIDO A TU CESTA</p>
 
@@ -79,7 +99,7 @@ export default class ShoppingCartModal extends Component {
 
               <div className='cart-modal-text'>
                 <p>{products_name}</p>
-                <p className={`${worksans.className}`}>{products_price} EUR</p>
+                <p className={worksans.className}>{products_price} EUR</p>
               </div>
             </div>
 

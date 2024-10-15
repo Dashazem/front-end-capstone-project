@@ -13,7 +13,7 @@ const AddressSelection = () => {
   useEffect(() => {
     const fetchAddresses = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:5000/customers/${auth.id}/addresses`, { withCredentials: true }); 
+        const response = await fetch(`https://back-end-capstone-project.onrender.com/customers/${auth.id}/addresses`, { withCredentials: true }); 
         const data = await response.json();
 
         if (Array.isArray(data.addresses)) {

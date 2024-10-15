@@ -20,7 +20,7 @@ const AdminProfile = () => {
 
   const verifyCurrentPassword = async (password) => {
     try {
-      const response = await axios.post('http://127.0.0.1:5000/administrators/verify_password', {
+      const response = await axios.post('https://back-end-capstone-project.onrender.com/administrators/verify_password', {
         administrators_id: userId,
         administrators_password: password
       }, { withCredentials: true });
@@ -47,7 +47,7 @@ const AdminProfile = () => {
     }
 
     try {
-      const response = await axios.patch('http://127.0.0.1:5000/administrators/update_email', {
+      const response = await axios.patch('https://back-end-capstone-project.onrender.com/administrators/update_email', {
         administrators_id: userId,
         administrators_email: newEmail,
       }, { withCredentials: true });
@@ -75,7 +75,7 @@ const AdminProfile = () => {
     }
 
     try {
-      const response = await axios.patch('http://127.0.0.1:5000/administrators/update_password', {
+      const response = await axios.patch('https://back-end-capstone-project.onrender.com/administrators/update_password', {
         administrators_id: userId,
         administrators_password: newPassword,
       }, { withCredentials: true });

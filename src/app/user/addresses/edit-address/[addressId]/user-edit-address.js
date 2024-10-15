@@ -25,7 +25,7 @@ export default function UserEditAddress() {
   useEffect(() => {
     const fetchAddress = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:5000/addresses/${addressId}`);
+        const response = await axios.get(`https://back-end-capstone-project.onrender.com/addresses/${addressId}`);
         setFormData({
           addresses_street_one: response.data.street_one,
           addresses_street_two: response.data.street_two,
@@ -56,7 +56,7 @@ export default function UserEditAddress() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://127.0.0.1:5000/update_address`, {
+      await axios.patch(`https://back-end-capstone-project.onrender.com/update_address`, {
         ...formData,
         address_id: addressId, 
         customers_id: userId, 

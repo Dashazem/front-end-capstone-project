@@ -4,7 +4,7 @@ import { loginSuccess, loginFail } from '../reducers/authReducer';
 export const login = (email, password) => {
     return async (dispatch) => {
         try {
-            const response = await axios.post('http://127.0.0.1:5000/login', 
+            const response = await axios.post('https://back-end-capstone-project.onrender.com/login', 
                 { email, password },
                 { withCredentials: true });
             const { role, first_name, id } = response.data; 
