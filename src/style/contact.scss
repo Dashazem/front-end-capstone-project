@@ -14,3 +14,20 @@
     }
   } 
 }
+
+@media (max-width: 615px) {
+  .contact-wrapper {
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 30px; 
+
+    .contact-list ul {
+      padding-left: 10px; 
+
+      li {
+        margin-bottom: 10px; 
+        font-size: 1em; 
+      }
+    }
+  }
+}

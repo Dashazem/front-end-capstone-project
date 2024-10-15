@@ -22,3 +22,36 @@
     }
   }
 }
+
+@media (max-width: 615px) {
+  .admin-customers-wrapper {
+    margin-left: 20px; 
+    margin-bottom: 30px; 
+
+    table {
+      display: block; 
+      overflow-x: auto; 
+      width: 100%; 
+
+      thead {
+        display: none; 
+      }
+
+      tbody {
+        display: block; 
+        max-height: 400px; 
+        overflow-y: auto; 
+      }
+
+      tr {
+        display: flex; 
+        flex-direction: column; 
+
+        td {
+          padding: 10px; 
+          font-size: 0.9em; 
+        }
+      }
+    }
+  }
+}

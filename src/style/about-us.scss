@@ -36,6 +36,33 @@
   }
 }
 
+@media (max-width: 615px) {
+  .about-wrapper {
+    grid-template-columns: 1fr; 
+    grid-gap: 10px;
+    height: auto; 
+    padding: 10px; 
+
+    .about-image-wrapper {
+      min-height: 350px;
+      padding: 10px;
+      img {
+        width: 100%; 
+      }
+    }
+
+    .about-text-wrapper {
+      max-width: 100%;
+      padding: 30px; 
+    }
+  }
+
+  .about-text p {
+    font-size: 1em; 
+  }
+}
+
+
 
 
 
