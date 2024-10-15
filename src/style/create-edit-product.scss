@@ -61,6 +61,11 @@
         grid-template-columns: 200px 200px 200px;
         grid-gap: 20px;
         align-items: center;
+
+        .dropzone {
+          border: 2px dashed $dark-blue; 
+          border-radius: 8px;
+        }
       }
 
       .edit-product-uploaders {
@@ -112,4 +117,74 @@
       }
     } 
   } 
+}
+
+@media (max-width: 615px) {
+  .create-product-wrapper,
+  .edit-product-wrapper {
+    margin-left: 40px; 
+    margin-right: 20px;
+
+    .create-product-container,
+    .edit-product-container {
+      grid-template-columns: 1fr; 
+      margin-left: 0;
+      margin-right: 0;
+
+      .create-product-inputs,
+      .edit-product-inputs {
+        input, .select-element, textarea {
+          width: 90%; 
+        }
+      }
+
+      .right-column {   
+        gap: 20px; 
+
+        .create-product-uploaders,
+        .edit-product-uploaders {
+          display: flex; 
+          flex-direction: column; 
+          align-items: center; 
+          gap: 40px; 
+          width: 100%; 
+        }
+
+        .create-product-uploaders {
+          .filepicker  {
+            display: flex;
+            flex-direction: column; 
+            align-items: center;  
+          }
+
+          .dz-message {
+            margin-top: 10px; 
+            text-align: center;
+          }
+        }
+      
+        .dropzone {
+          width: 200px; 
+          height: 200px; 
+          border: 2px dashed $dark-blue; 
+          border-radius: 8px; 
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+        }
+        
+        .create-product-button,
+        .edit-product-button {
+          margin-top: 20px;
+          width: 70%; 
+          .btn {
+            margin-right: 0;
+            margin-bottom: 30px;  
+            width: 100%; 
+          }
+        }
+      } 
+    }
+  }
 }

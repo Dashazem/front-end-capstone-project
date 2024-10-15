@@ -4,7 +4,7 @@ import ProtectedRoute from '../../components/helpers/protected-routes';
 
 const DeleteAccountPage = () => {
   return (
-    <ProtectedRoute roles={['USER']}>
+    <ProtectedRoute roles={['USER', 'ADMIN']}>
       <DeleteAccount />
     </ProtectedRoute>
   );

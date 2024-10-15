@@ -5,10 +5,20 @@
     align-items: center;
     background-color: $pastel-dark-green;
     height: 170px;
+
+    @media (max-width: 615px) { 
+      height: 100px;
+    }
   
     .category-link {
       margin-top: 10px;
       margin-bottom: 10px;
+
+      @media (max-width: 615px) { 
+        margin-top: 2px;
+        margin-bottom: 2px;
+        font-size: 0.9em;
+      }
     }
   }
 }

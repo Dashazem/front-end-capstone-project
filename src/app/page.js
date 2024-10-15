@@ -26,13 +26,13 @@ export default function Home() {
           </div>
           
           <div className='category-right-text'>
-            <p>Descubre nuestra colección de<br/><Link href="/categories/juguetes">JUGUETES AMIGURUMI</Link></p>
+            <p>Descubre nuestra colección de<br/><Link href="/products/juguetes">JUGUETES AMIGURUMI</Link></p>
           </div>
         </div>
         
         <div className='category-container'>
           <div className='category-left-text'>
-            <p>¡No te pierdas nuestros<br/><Link href="/categories/mordedores">MORDEDORES</Link> !</p>
+            <p>¡No te pierdas nuestros<br/><Link href="/products/mordedores">MORDEDORES</Link> !</p>
           </div>
           
           <div className='category-image'>
@@ -62,13 +62,13 @@ export default function Home() {
           </div>
 
           <div className='category-right-text'>
-            <p>Mantén los pies de tu bebé cálidos y cómodos con nuestros<br /><Link href="/categories/patucos">PATUCOS</Link></p>
+            <p>Mantén los pies de tu bebé cálidos y cómodos con nuestros<br /><Link href="/products/patucos">PATUCOS</Link></p>
           </div>
         </div>
 
         <div className='category-container'>
           <div className='category-left-text'>
-            <p>Añade un toque de magia a la habitación de tu bebé con nuestros<br/><Link href="/categories/moviles">MÓVILES DE CUNA</Link></p>
+            <p>Añade un toque de magia a la habitación de tu bebé con nuestros<br/><Link href="/products/moviles">MÓVILES DE CUNA</Link></p>
           </div>
 
           <div className='category-image'>

@@ -40,3 +40,36 @@
     }
   }
 }
+
+@media (max-width: 615px) {
+  .user-addresses-wrapper {
+    margin-left: 30px; 
+    margin-right: 60px; 
+    margin-bottom: 40px;
+    margin-top: 40px; 
+
+    p {
+      font-size: 1em; 
+      margin-bottom: 15px; 
+    }
+
+    .address-containers {
+      width: 100%; 
+
+      .address-container {
+        width: 100%; 
+        flex-direction: column; 
+        align-items: flex-start; 
+
+        .address-container-buttons {
+          flex-direction: row; 
+          gap: 5px; 
+
+          .btn {
+            width: 100%; 
+          }
+        }
+      }
+    }
+  }
+}

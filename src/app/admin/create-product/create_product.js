@@ -198,38 +198,44 @@ export default class CreateProduct extends Component {
             
             <div className='right-column'>
               <div className='create-product-uploaders'>
-                <DropzoneComponent
-                  ref={this.mainRef}
-                  config={this.componentConfig()}
-                  djsConfig={this.djsConfig()}
-                  eventHandlers={{
-                    addedfile: (file) => this.handleImageDrop(file, 'main'),
-                  }}
-                >
-                  <div className='dz-message'>Imagen Principal*</div>
-                </DropzoneComponent>
-
-                <DropzoneComponent
-                  ref={this.firstAdditionalRef}
-                  config={this.componentConfig()}
-                  djsConfig={this.djsConfig()}
-                  eventHandlers={{
-                    addedfile: (file) => this.handleImageDrop(file, 'firstAdditional'),
-                  }}
-                >
-                  <div className='dz-message'>Imagen Adicional 1</div>
-                </DropzoneComponent>
-
-                <DropzoneComponent
-                  ref={this.secondAdditionalRef}
-                  config={this.componentConfig()}
-                  djsConfig={this.djsConfig()}
-                  eventHandlers={{
-                    addedfile: (file) => this.handleImageDrop(file, 'secondAdditional'),
-                  }}
-                >
-                  <div className='dz-message'>Imagen Adicional 2</div>
-                </DropzoneComponent>
+                <div>
+                  <DropzoneComponent
+                    ref={this.mainRef}
+                    config={this.componentConfig()}
+                    djsConfig={this.djsConfig()}
+                    eventHandlers={{
+                      addedfile: (file) => this.handleImageDrop(file, 'main'),
+                    }}
+                  >
+                    <div className='dz-message'>Imagen Principal*</div>
+                  </DropzoneComponent>
+                </div>
+                
+                <div>
+                  <DropzoneComponent
+                    ref={this.firstAdditionalRef}
+                    config={this.componentConfig()}
+                    djsConfig={this.djsConfig()}
+                    eventHandlers={{
+                      addedfile: (file) => this.handleImageDrop(file, 'firstAdditional'),
+                    }}
+                  >
+                    <div className='dz-message'>Imagen Adicional 1</div>
+                  </DropzoneComponent>
+                </div>
+                
+                <div>
+                  <DropzoneComponent
+                    ref={this.secondAdditionalRef}
+                    config={this.componentConfig()}
+                    djsConfig={this.djsConfig()}
+                    eventHandlers={{
+                      addedfile: (file) => this.handleImageDrop(file, 'secondAdditional'),
+                    }}
+                  >
+                    <div className='dz-message'>Imagen Adicional 2</div>
+                  </DropzoneComponent>
+                </div>
               </div>
 
               <div className='create-product-button'>

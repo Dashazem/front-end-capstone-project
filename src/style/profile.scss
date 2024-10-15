@@ -64,3 +64,51 @@
   }
 
 }
+
+@media (max-width: 615px) {
+  .profile-wrapper {
+    margin-top: 20px;
+    margin-left: 40px; 
+    margin-right: 40px; 
+
+    .change-email-inputs,
+    .change-phone-number-inputs,
+    .change-password-inputs {
+      padding-top: 10px; 
+      padding-bottom: 10px;
+
+      input {
+        width: 90%; 
+      }
+
+      .phone-input {
+        input {
+          margin-left: 45px;
+          width: 78%;
+        }
+      }
+    }
+
+    .change-email-button,
+    .change-phone-number-button,
+    .change-password-button {
+      width: 100%; 
+      margin-top: 10px; 
+    }
+
+    .phone-input {
+      input {
+        margin-left: 0; 
+        width: 100%; 
+      }
+      .flag-dropdown {
+        margin-left: 0; 
+      }
+    }
+
+    .delete-link {
+      margin-top: 20px; 
+      margin-bottom: 20px;
+    }
+  }
+}

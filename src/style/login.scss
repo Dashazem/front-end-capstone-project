@@ -60,4 +60,48 @@
 }
 
 
+@media (max-width: 615px) {
+  .login-wrapper {
+    margin-left: 20px;  
+    margin-right: 20px; 
+    margin-top: 10px;   
+    margin-bottom: 20px; 
+
+    .login-container {
+      flex-direction: column; 
+      align-items: center;     
+      margin: 0;             
+
+      .left-column, 
+      .right-column {
+        width: 100%;          
+        padding: 0;           
+        margin: 10px 0;      
+      }
+
+      .input-container {
+        width: 100%;            
+        margin-bottom: 20px;   
+      }
+
+      .right-column-text {
+        padding: 0;           
+        text-align: center;   
+        margin: 10px 0;       
+
+        p {
+          text-align: center; 
+        }
+      }
+
+      .btn {
+        width: 70%;          
+        margin-top: 20px; 
+        margin-bottom: 20px;    
+      }
+    }
+  }
+}
+
+
 

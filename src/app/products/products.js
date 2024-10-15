@@ -58,13 +58,15 @@ const AllProducts = () => {
   };
 
   return (
-    <div className='products-wrapper'>
+    <div>
       {loading && products.length === 0 && ( 
         <div className='spinner'>
           <ImSpinner3 className="spinner-icon" />
         </div>
       )}
-      {receivedProducts()}
+      <div className='products-wrapper'>
+        {receivedProducts()}
+      </div>
       {loadingMore && (
         <div className='spinner'>
           <ImSpinner3 className="spinner-icon" />

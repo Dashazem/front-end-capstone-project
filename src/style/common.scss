@@ -24,3 +24,17 @@ p {
   color: $pastel-dark-pink;
   font-size: 0.8em;
 }
+
+@media (max-width: 615px) {
+  h2 {
+    font-size: 1.2em;
+  }
+
+  h2 {
+    font-size: 1.1em;
+  }
+
+  h3 {
+    font-size: 1em;
+  }
+}

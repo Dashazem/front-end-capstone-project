@@ -36,7 +36,7 @@ const NavBar = () => {
 
   return (
     <div className='navbar'>
-      <div>
+      <div className='left-column'>
         <CategoriesModal 
           handleCloseAllCategories={handleCloseAllCategories} 
           modalIsOpen={categoriesModalIsOpen} 
@@ -59,7 +59,7 @@ const NavBar = () => {
         </Link>
       </div>
 
-      <div className='right-side'>
+      <div className='right-column'>
          
         {userEmail ? (
           userRole === "ADMIN" ? (

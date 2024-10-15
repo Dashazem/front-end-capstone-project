@@ -18,3 +18,13 @@
     }
   }
 }
+
+@media (max-width: 615px) {
+  .shipping-wrapper {
+    margin: 30px;
+
+    .shipping-container {
+      padding: 10px;  
+    }
+  }
+}

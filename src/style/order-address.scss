@@ -37,3 +37,20 @@
     }
   }
 }
+
+@media (max-width: 615px) {
+  .order-address-wrapper {
+    margin-left: 50px;     
+    margin-bottom: 40px;
+    margin-top: 40px;
+    h2 {
+      font-size: 1.1em;
+    }
+
+    .address-container {
+      .address-label p {
+        font-size: 1em;      
+      }
+    }
+  }
+}

@@ -1,10 +1,8 @@
 .spinner {
   display: flex;
   justify-content: center; 
-  align-items: flex-start; 
+  align-items: flex-start;
   height: 100vh; 
-  padding-top: 15px; 
-  margin-left: 700px;
 }
 
 .spinner-icon {
@@ -17,3 +15,16 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+@media (max-width: 615px) {
+  .spinner {
+    height: 80vh;
+    margin-left: 0; 
+    padding-top: 0; 
+  }
+
+  .spinner-icon {
+    font-size: 30px; 
+  }
+}
+
