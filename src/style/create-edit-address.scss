@@ -1,0 +1,48 @@
+.address-wrapper {
+  margin-left: 150px;
+  margin-top: 30px;
+  margin-bottom: 80px;
+
+  .address-inputs {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    
+    @include input-element();
+    input {
+      width: 30%;
+    }
+
+    label {
+      text-align: left;
+      width: 80%;
+
+      p {
+       margin: 0px;
+       font-size: 0.8em;
+      }
+     }
+  }
+
+  @include button();
+}
+
+@media (max-width: 615px) {
+  .address-wrapper {
+    margin-left: 30px;  
+    margin-top: 20px;
+    margin-bottom: 40px;
+
+    .address-inputs {
+      margin-top: 20px;
+      margin-bottom: 10px;
+
+      input {
+        width: 70%;  
+      }
+
+      label {
+        width: 100%;  
+      }
+    }
+  }
+}

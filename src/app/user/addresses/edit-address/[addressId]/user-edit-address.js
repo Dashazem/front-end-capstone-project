@@ -73,9 +73,9 @@ export default function UserEditAddress() {
 
 
   return (
-    <div>
+    <div className='address-wrapper'>
       <h2>Editar Dirección</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='address-inputs'>
         <div>
           <label>
             Dirección*:
@@ -149,7 +149,7 @@ export default function UserEditAddress() {
             />
           </label>
         </div>
-        <button type="submit">Actualizar Dirección</button>
+        <button  className='btn' type="submit">Actualizar Dirección</button>
         {successMessage && <div className='success-message'><p>{successMessage}</p></div>}
         {errorMessage && <div className='error-message'><p>{errorMessage}</p></div>}
       </form>

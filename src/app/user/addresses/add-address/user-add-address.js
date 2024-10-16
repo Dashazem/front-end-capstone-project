@@ -46,9 +46,9 @@ export default function UserAddAddress() {
   };
 
   return (
-    <div>
+    <div className='address-wrapper'>
       <h2>Añadir Dirección</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='address-inputs'>
         <div>
           <input
             type="text"
@@ -113,7 +113,7 @@ export default function UserAddAddress() {
             maxLength={5} 
           />
         </div>
-        <button type="submit">Añadir Dirección</button>
+        <button className='btn' type="submit">Añadir Dirección</button>
         {successMessage && <div className='success-message'><p>{successMessage}</p></div>}
         {errorMessage && <div className='error-message'><p>{errorMessage}</p></div>}
       </form>
