@@ -29,7 +29,7 @@ export default function UserAddresses() {
 
   const handleEditAddress = (addressId) => {
     if (addressId) {
-      router.push(`/edit-address/${addressId}`);
+      router.push(`/user/addresses/edit-address/${addressId}`);
     } else {
       console.error('Invalid address ID');
     }
@@ -46,7 +46,7 @@ export default function UserAddresses() {
   };
 
   const handleAddAddress = () => {
-    router.push('/add-address'); 
+    router.push('/user/addresses/add-address'); 
   };
 
   return (
