@@ -26,7 +26,10 @@ const cartSlice = createSlice({
         state.items.push({ ...action.payload, quantity: 1 });
         state.totalAmount = parseFloat((state.totalAmount + price).toFixed(2));
       }
-      localStorage.setItem('cart', JSON.stringify(state)); 
+
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cart', JSON.stringify(state)); 
+      }
     },
     increaseItemQuantity(state, action) {
       const itemToIncrease = state.items.find(item => item.id === action.payload.id);
@@ -39,7 +42,9 @@ const cartSlice = createSlice({
           state.totalAmount = parseFloat((state.totalAmount + price).toFixed(2));
           itemToIncrease.quantity = newQuantity;
           state.errorMessage = '';
-          localStorage.setItem('cart', JSON.stringify(state)); 
+          if (typeof window !== 'undefined') {
+            localStorage.setItem('cart', JSON.stringify(state)); 
+          }
         } else {
           state.errorMessage = "Stock insuficiente"; 
         }
@@ -56,13 +61,17 @@ const cartSlice = createSlice({
           state.totalAmount = parseFloat((state.totalAmount - price).toFixed(2));
           state.items = state.items.filter(item => item.id !== action.payload.id);
         }
-        localStorage.setItem('cart', JSON.stringify(state)); 
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('cart', JSON.stringify(state)); 
+        } 
       }
     },
     clearCart(state) {
       state.items = [];
       state.totalAmount = 0;
-      localStorage.removeItem('cart');
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('cart');
+      }
     },
   },
 });
