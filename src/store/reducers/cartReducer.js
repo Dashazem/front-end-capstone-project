@@ -1,9 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const loadCartFromLocalStorage = () => {
-
-  const savedCart = localStorage.getItem('cart');
+  const savedCart = typeof window !== 'undefined' ? localStorage.getItem('cart') : null;
   return savedCart ? JSON.parse(savedCart) : { items: [], totalAmount: 0 };
+};
+
+const saveCartToLocalStorage = (cart) => {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
 };
 
 const cartSlice = createSlice({
@@ -26,10 +31,7 @@ const cartSlice = createSlice({
         state.items.push({ ...action.payload, quantity: 1 });
         state.totalAmount = parseFloat((state.totalAmount + price).toFixed(2));
       }
-
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('cart', JSON.stringify(state)); 
-      }
+      saveCartToLocalStorage(state);
     },
     increaseItemQuantity(state, action) {
       const itemToIncrease = state.items.find(item => item.id === action.payload.id);
@@ -42,9 +44,7 @@ const cartSlice = createSlice({
           state.totalAmount = parseFloat((state.totalAmount + price).toFixed(2));
           itemToIncrease.quantity = newQuantity;
           state.errorMessage = '';
-          if (typeof window !== 'undefined') {
-            localStorage.setItem('cart', JSON.stringify(state)); 
-          }
+          saveCartToLocalStorage(state);
         } else {
           state.errorMessage = "Stock insuficiente"; 
         }
@@ -61,17 +61,13 @@ const cartSlice = createSlice({
           state.totalAmount = parseFloat((state.totalAmount - price).toFixed(2));
           state.items = state.items.filter(item => item.id !== action.payload.id);
         }
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('cart', JSON.stringify(state)); 
-        } 
+        saveCartToLocalStorage(state);
       }
     },
     clearCart(state) {
       state.items = [];
       state.totalAmount = 0;
-      if (typeof window !== 'undefined') {
-        localStorage.removeItem('cart');
-      }
+      saveCartToLocalStorage(state);
     },
   },
 });

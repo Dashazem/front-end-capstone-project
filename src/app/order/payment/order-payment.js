@@ -18,11 +18,13 @@ const OrderPayment = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [selectedAddress, setSelectedAddress] = useState(null);
-  
+
   useEffect(() => {
-    const address = localStorage.getItem('selectedAddress');
-    if (address) {
-      setSelectedAddress(address);
+    if (typeof window !== 'undefined') {
+      const address = localStorage.getItem('selectedAddress');
+      if (address) {
+        setSelectedAddress(address);
+      }
     }
   }, []);
   
@@ -77,7 +79,9 @@ const OrderPayment = () => {
 
           dispatch(createNewOrder(orderDetails)); 
           dispatch(clearCart());
-          localStorage.setItem('orders_number', orderDetails.orders_number);
+          if (typeof window !== 'undefined') {
+            localStorage.setItem('orders_number', orderDetails.orders_number);
+          }
           router.push('/order/success');
         })
         .catch(error => {

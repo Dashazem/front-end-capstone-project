@@ -9,6 +9,13 @@ export default function Admin() {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const user = localStorage.getItem('user');
+      const cart = localStorage.getItem('cart');
+    }
+  }, []);
+
   const handleLogout = () => {
     dispatch(logout());
     localStorage.removeItem('user');

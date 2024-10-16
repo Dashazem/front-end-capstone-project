@@ -27,8 +27,10 @@ export default function User() {
 
   const handleLogout = () => {
     dispatch(logout());
-    localStorage.removeItem('user');
-    localStorage.removeItem('cart');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('user');
+      localStorage.removeItem('cart');
+    }
     router.push('/'); 
   };
 

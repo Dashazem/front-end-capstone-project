@@ -17,12 +17,14 @@ const Login = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const user = localStorage.getItem('user');
-    if (user) {
-      const parsedUser = JSON.parse(user);
-      dispatch(loginSuccess(parsedUser));
-    } else {
-      dispatch(setLoading(false)); 
+    if (typeof window !== 'undefined') {
+      const user = localStorage.getItem('user');
+      if (user) {
+        const parsedUser = JSON.parse(user);
+        dispatch(loginSuccess(parsedUser));
+      } else {
+        dispatch(setLoading(false)); 
+      }
     }
   }, [dispatch]);
   

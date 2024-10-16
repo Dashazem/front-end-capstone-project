@@ -24,10 +24,11 @@ const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity, auth, setCart
   
 
   useEffect(() => {
-    const savedCart = localStorage.getItem('cart');
-    if (savedCart) {
-      const cartData = JSON.parse(savedCart);
-      dispatch(setCartFromLocalStorage(cartData));
+    if (typeof window !== 'undefined') {
+      const savedCart = localStorage.getItem('cart');
+      if (savedCart) {
+        dispatch(setCartFromLocalStorage(JSON.parse(savedCart)));
+      }
     }
   }, [dispatch]);
 

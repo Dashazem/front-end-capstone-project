@@ -9,7 +9,9 @@ export const login = (email, password) => {
                 { withCredentials: true });
             const { role, first_name, id } = response.data; 
 
-            localStorage.setItem('user', JSON.stringify({ email, role, first_name, id }));
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('user', JSON.stringify({ email, role, first_name, id }));
+            }
             
             dispatch(loginSuccess({ email, role, first_name, id })); 
             return { type: 'LOGIN_SUCCESS' };

@@ -33,7 +33,9 @@ const AddressSelection = () => {
 
 
   const handleSubmit = () => {
-    localStorage.setItem('selectedAddress', selectedAddress);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('selectedAddress', selectedAddress);
+    }
     router.push('/order/payment');
   };
   

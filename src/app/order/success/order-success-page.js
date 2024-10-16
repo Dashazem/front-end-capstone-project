@@ -9,9 +9,11 @@ export default function OrderSuccessPage() {
   const [orders_number, setOrdersNumber] = useState(null);
   
   useEffect(() => {
-    const ordersNumber = localStorage.getItem('orders_number');
-    if (ordersNumber) {
-      setOrdersNumber(ordersNumber);
+    if (typeof window !== 'undefined') {
+      const ordersNumber = localStorage.getItem('orders_number');
+      if (ordersNumber) {
+        setOrdersNumber(ordersNumber);
+      }
     }
   }, []);
 
