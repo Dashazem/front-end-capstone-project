@@ -95,7 +95,7 @@ const EditProduct = ({ product }) => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://back-end-capstone-project.onrender.com/${product.products_id}`, { withCredentials: true });
+      await axios.delete(`https://back-end-capstone-project.onrender.com/products/${product.products_id}`, { withCredentials: true });
       setSuccessMessage('Producto eliminado correctamente');
       setTimeout(() => {
         router.push(`/products/${product.products_category.toLowerCase()}`);
