@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect, useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { worksans } from '../../fonts/fonts';
 import { FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
@@ -8,6 +8,7 @@ import { increaseItemQuantity, decreaseItemQuantity, setCartFromLocalStorage  } 
 
 const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity, auth, setCartFromLocalStorage }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [message, setMessage] = useState(''); 
   const [errorMessage, setErrorMessage] = useState(''); 
   const totalAmount = useSelector(state => state.cart.totalAmount);
