@@ -4,9 +4,9 @@ import { connect, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { worksans } from '../../fonts/fonts';
 import { FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
-import { increaseItemQuantity, decreaseItemQuantity } from '../../store/reducers/cartReducer';
+import { increaseItemQuantity, decreaseItemQuantity, setCartFromLocalStorage  } from '../../store/reducers/cartReducer';
 
-const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity, auth }) => {
+const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity, auth, setCartFromLocalStorage }) => {
   const router = useRouter();
   const [message, setMessage] = useState(''); 
   const [errorMessage, setErrorMessage] = useState(''); 
@@ -27,8 +27,9 @@ const Cart = ({ items, increaseItemQuantity, decreaseItemQuantity, auth }) => {
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
       const cartData = JSON.parse(savedCart);
+      dispatch(setCartFromLocalStorage(cartData));
     }
-  }, []);
+  }, [dispatch]);
 
 
   const getQuantity = (itemId) => {
@@ -133,5 +134,5 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { increaseItemQuantity, decreaseItemQuantity })(Cart);
+export default connect(mapStateToProps, { increaseItemQuantity, decreaseItemQuantity, setCartFromLocalStorage })(Cart);
 
