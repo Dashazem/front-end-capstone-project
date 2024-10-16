@@ -28,7 +28,11 @@ export default function UserAddresses() {
   }, [userId]);
 
   const handleEditAddress = (addressId) => {
-    router.push(`/edit-address/${addressId}`); 
+    if (addressId) {
+      router.push(`/edit-address/${addressId}`);
+    } else {
+      console.error('Invalid address ID');
+    }
   };
 
   const handleDeleteAddress = async (addressId) => {
