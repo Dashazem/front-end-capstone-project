@@ -91,7 +91,7 @@ export default class CreateProduct extends Component {
     event.preventDefault(); 
   
     const formData = this.buildForm(); 
-    axios.post('https://backend-crochet-knit.onrender.com/products', formData, {
+    axios.post('https://back-end-capstone-project.onrender.com/products', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       }
@@ -102,7 +102,7 @@ export default class CreateProduct extends Component {
       const imageFormData = this.buildImage();
       imageFormData.append('products_id', productId); 
 
-      return axios.post('https://backend-crochet-knit.onrender.com/upload_image', imageFormData, {
+      return axios.post('https://back-end-capstone-project.onrender.com/upload_image', imageFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         }
